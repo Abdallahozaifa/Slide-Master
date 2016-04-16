@@ -1,0 +1,32 @@
+{
+  "name": "slide-master",
+  "version": "1.0.0",
+  "description": "web slide player with note taking ability ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abdallahozaifa/Slide-Master.git"
+  },
+  "keywords": [
+    "slide",
+    "master",
+    "master",
+    "slide",
+    "slideplayer",
+    "player"
+  ],
+  "author": "Hozaifa Abdalla, Alex Kiefer, Daniel Lopez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Abdallahozaifa/Slide-Master/issues"
+  },
+  "homepage": "https://github.com/Abdallahozaifa/Slide-Master#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "fs": "0.0.2"
+  }
+}
