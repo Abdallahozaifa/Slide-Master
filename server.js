@@ -3,6 +3,11 @@ var express = require('express');
 var fs = require('fs');
 var app = express();
 
+/* Serving static files in express */
+app.use('/css', express.static('css'));
+app.use('/js', express.static('js'));
+
+
 /* Main Page for Slide Master */
 app.get('/SlideMaster', function(req,res){
     /* Sends the slidemaster html page to the user */
