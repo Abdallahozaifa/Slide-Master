@@ -2,6 +2,7 @@
 var express = require('express');
 var fs = require('fs');
 var app = express();
+var slideMaster = require("./js/slideModule.js");
 
 /* Serving static files in express */
 app.use('/css', express.static('css'));

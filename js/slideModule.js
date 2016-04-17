@@ -5,6 +5,7 @@
      /* Imports */
      var pub = {};
      var priv = {};
+     
 
      
      /* EXPORTS the slide master tool in node */
