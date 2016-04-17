@@ -20,5 +20,5 @@ app.get('/SlideMaster', function(req,res){
 
 /* Listens on the cloud9 Port */
 app.listen(process.env.PORT, function() {
-  console.log('App listening at http://%s:%s', process.env.IP, process.env.PORT);
+  console.log('App listening at https://slide-master-abdallahozaifa.c9users.io/SlideMaster');
 });
