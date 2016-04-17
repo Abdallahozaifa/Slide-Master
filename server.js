@@ -18,6 +18,14 @@ app.get('/SlideMaster', function(req,res){
     });
 });
 
+app.get('/SlideMaster/slide', function(req, res){
+   console.log("User wants the slide!");
+   /* Sends the template html page to the user */
+    fs.readFile('templates/slide.html', 'utf8', function(err, data){
+        if(!err) res.send(data);
+        else return console.log(err);
+    });
+});
 
 /* Listens on the cloud9 Port */
 app.listen(process.env.PORT, function() {

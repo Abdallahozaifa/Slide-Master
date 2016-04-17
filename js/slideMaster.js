@@ -1,5 +1,22 @@
 $(document).ready(function(){
     
+    var injectIframeContent = function(){
+        setTimeout(function() {
+            var slideInfo = $($("iframe")[0]).contents().find("#slide-info");
+            console.log(slideInfo);
+        }, 100);  
+    };
+    injectIframeContent();
+    
+    /* Allows all the messages to be on the console for debugging */
+    var debugModeOn = true; 
+    /* Prints the string out to the console depending on debug mode */
+    var debugOut = function(str){
+        if(debugModeOn){
+            console.log(str);
+        }
+    };
+    
     /* Icons object that contains all the icons on the page */
     var icons = {
         play: $("i")[0],
@@ -12,27 +29,27 @@ $(document).ready(function(){
     
     /* Icons click handlers for all the icons */
     $(icons.play).click(function(){
-       console.log("Play!"); 
+       debugOut("Play!"); 
     });
     
     $(icons.up).click(function(){
-       console.log("up!"); 
+       debugOut("up!"); 
     });
     
     $(icons.down).click(function(){
-       console.log("down!"); 
+       debugOut("down!"); 
     });
     
     $(icons.stop).click(function(){
-       console.log("Play!"); 
+       debugOut("Play!"); 
     });
     
     $(icons.audio).click(function(){
-       console.log("audio!"); 
+       debugOut("audio!"); 
     });
     
     $(icons.save).click(function(){
-       console.log("save!"); 
+       debugOut("save!"); 
     });
     
 });
