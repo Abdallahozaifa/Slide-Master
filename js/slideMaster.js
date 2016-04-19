@@ -40,7 +40,7 @@ $(document).ready(function(){
     });
     
     $(icons.up).click(function(){
-        debugOut("up!"); 
+       debugOut("up!"); 
     });
     
     $(icons.down).click(function(){
@@ -48,7 +48,7 @@ $(document).ready(function(){
     });
     
     $(icons.stop).click(function(){
-       debugOut("Stop!"); 
+       debugOut("Stop!");        
     });
     
     $(icons.audio).click(function(){
@@ -57,8 +57,7 @@ $(document).ready(function(){
     
     $(icons.save).click(function(){
        debugOut("save!"); 
-    });
-    
+    });  
 });
 
 function openLecture(url) {

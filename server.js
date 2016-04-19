@@ -12,6 +12,7 @@ app.use('/resources', express.static('resources'));
 
 /* Main Page for Slide Master */
 app.get('/', function(req,res){
+
     /* Sends the slidemaster html page to the user */
     fs.readFile('slidemaster.html', 'utf8', function(err, data){
         if(!err) res.send(data);
