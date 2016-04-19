@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html  lang="en">
+<!--............................. 
+.		Head of the Page        .
+..............................-->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide Master</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/slidemaster.css" type="text/css" />
+</head>
+
+<!--............................. 
+.		Body of the Page        .
+..............................-->
+
+<body>
+    
+    <div class="row">
+        <div class="large-8 columns inline-list right">
+            <!--<h1><img src="http://placehold.it/400x100&text=Logo"/></h1>-->
+            <h1> Welcome to Slide Master!</h1>
+        </div>
+        <div class="large-9 columns">
+            <ul class="inline-list right">
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <!--............................. 
+        .		Slide Player Area       .
+        ..............................-->
+        <div class="large-9 push-0 columns">
+            <h3>Slide Player <small>Slide Number</small></h3>
+            <iframe src="slide" width="1000" height="500" id="slideFrame"> </iframe>
+            <div>
+                <iframe src="/resources/noteInferface.html" width="1000" height="50" id="noteInterface" fileName=""></iframe>
+            </div>
+            <div>
+                <iframe src="" width="1000" height="100"></iframe>
+            </div>
+        </div>
+
+
+        <!--............................. 
+        .	Slide Button Area on side   .
+        ..............................-->
+        <div class="large-3 pull-10 columns">
+            <ul class="side-nav">
+                <br>
+                <div class="row">
+                    <i class="fa fa-play-circle-o fa-5x" aria-hidden="true"></i>
+                </div>
+                <div class="row">
+                    <i class="fa fa-arrow-circle-o-up fa-5x" aria-hidden="true" witdth="400"></i>
+                </div>
+                <div class="row">
+                    <i class="fa fa-arrow-circle-o-down fa-5x" aria-hidden="true"></i>
+                </div>
+                <div class="row">
+                    <i class="fa fa-stop-circle-o fa-5x" aria-hidden="true"></i>
+                </div>
+                <div class="row">
+                    <i class="fa fa-file-audio-o fa-5x" aria-hidden="true"></i>
+                </div>
+                <div class="row">
+                    <i class="fa fa-floppy-o fa-5x" aria-hidden="true"></i>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+
+    <!--............................. 
+    .		Note Taking Area        .
+    ..............................-->
+    <footer class="row">
+        <div class="large-12 columns">
+            <hr/>
+            <div class="row">
+                <div class="large-6 columns">
+                    <p>&copy; Hozaifa Abdalla, Daniel Lopez, Alex Kiefer</p>
+                </div>
+                <div class="large-6 columns">
+                    <ul class="inline-list right">
+                        <h6> Built with foundationJS</h6>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!--............................. 
+        External Javascript Files   .
+    ..............................-->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
+    <script type="text/javascript" src="js/slideMaster.js"></script>
+    <script>
+        $(document).foundation();
+    </script>
+</body>
+
+</html>
