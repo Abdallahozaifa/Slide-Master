@@ -9,6 +9,8 @@ app.use('/css', express.static('css'));
 app.use('/js', express.static('js'));
 app.use('/resources', express.static('resources'));
 
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 /* Main Page for Slide Master */
 app.get('/SlideMaster', function(req,res){
@@ -33,9 +35,10 @@ app.post('/SlideMaster/addNote', function(req, res){
     var filename = req.body.filename;      //Get filename attr from req body
     fs.readFile("resources/" + filename, 'utf8', function(err, data){
         if(!err) notes = data;
+
         else return console.log(err);       
     });
-    console.log("got reqeust on /SlideMaster/addNote");
+    console.log("got request on /SlideMaster/addNote");
 });
 
 app.get('/resources/lecture', function(req, res) {
