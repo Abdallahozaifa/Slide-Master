@@ -13,7 +13,7 @@ Update server notes on slide change
 
 
 
-$().ready(function(){
+$(document).ready(function(){
     var noteBtn = $("#addNote");
     
     $(noteBtn).on("click", function(){

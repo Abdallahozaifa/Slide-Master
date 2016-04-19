@@ -1,0 +1,47 @@
+{ 
+    "lectureID": "lecture001",
+    "lectureTitle": "Graphics",
+    "courseTitle": "Net-Centric-Web-Application",
+    "pages": [{
+        "lectureID": "lecture001",
+        "pageID": "1",
+        "pageSequence": "notdefined",
+        "pageAudioURL": "notdefined",
+        "entities": [
+            {
+                "lectureID": "lecture001", 
+                "pageID": "1",
+                "entityID": "lecture001-1-01",
+                "entityType": "text",
+                "entityLocation": {"x": 20, "y": 30},
+                "entityContent": "Twenty carrots",
+                "entityAnimation": "fadeIn"
+            }
+        ]
+    }, {
+        "lectureID": "lecture001",
+        "pageID": "2",
+        "pageSequence": "notdefined",
+        "pageAudioURL": "notdefined",
+        "entities": [
+            {
+                "lectureID": "lecture001", 
+                "pageID": "2",
+                "entityID": "lecture001-2-01",
+                "entityType": "text",
+                "entityLocation": {"x": 20, "y": 30},
+                "entityContent": "I like trains.",
+                "entityAnimation": "fadeIn"
+            },
+            {
+                "lectureID": "lecture001", 
+                "pageID": "2",
+                "entityID": "lecture001-2-02",
+                "entityType": "text",
+                "entityLocation": {"x": 50, "y": 60},
+                "entityContent": "Graphics API",
+                "entityAnimation": "fadeIn"
+            }
+        ]
+    }]
+}

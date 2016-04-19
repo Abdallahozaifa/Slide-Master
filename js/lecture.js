@@ -14,7 +14,7 @@ var Lecture = function(lecID, lecTitle, courseTitle, instructor, page){
         lecTitle: "",
         courseTitle: "",
         instructor: "",
-        page: {
+        pages: {
             lecID: "",
             pageID: "",
             pageSeq: "",

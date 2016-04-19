@@ -1,9 +1,16 @@
+var currentSlide = 1;
+var lectureObject;
+
 $(document).ready(function(){
+    
+    // default lecture url
+    var url = "resources/lecture";
+    // open the lecture url and render to iframe
+    openLecture(url);
     
     var injectIframeContent = function(){
         setTimeout(function() {
             var slideInfo = $($("iframe")[0]).contents().find("#slide-info");
-            console.log(slideInfo);
         }, 100);  
     };
     injectIframeContent();
@@ -41,7 +48,7 @@ $(document).ready(function(){
     });
     
     $(icons.stop).click(function(){
-       debugOut("Play!"); 
+       debugOut("Stop!");        
     });
     
     $(icons.audio).click(function(){
@@ -50,6 +57,34 @@ $(document).ready(function(){
     
     $(icons.save).click(function(){
        debugOut("save!"); 
-    });
-    
+    });  
 });
+
+function openLecture(url) {
+    
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            lectureObject = JSON.parse(xmlhttp.responseText);
+            renderLecture(lectureObject);
+        }
+        
+    }
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+    
+    // update note interface filename tag to know where notes are being saved 
+    document.getElementById("noteInterface").setAttribute("fileName", url);
+    document.getElementById("noteInterface").setAttribute("slideNumber", currentSlide);
+
+}
+
+function renderLecture(lectureObject) {
+    if (lectureObject.pages.length >= currentSlide) {
+        renderPage(lectureObject.pages[currentSlide-1]);
+    }
+}
+
+function renderPage(pageObject) {
+    debugOut('Page to be rendered: ' + pageObject);
+}
