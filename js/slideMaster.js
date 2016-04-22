@@ -20,14 +20,6 @@ $(document).ready(function() {
             slideController.slideInfo = slideController.getSlideFrame();
     };
 
-    /* Prints the frame contents to check it grabbed it correctly */
-    var printFrameContents = function() {
-        debugOut(slideController.noteInput);
-        debugOut(slideController.addBtn);
-        debugOut(slideController.noteArea);
-        debugOut(slideController.slideInfo);
-    };
-
     /* Page header object that contains the course title, lecture title, and current slide number */
     var pageHeader = {
         courseTitle: $("#course-title"),
@@ -37,9 +29,19 @@ $(document).ready(function() {
 
     /* Changes the header info for the user */
     var changeHeaderInfo = function(lecObj, slideNum) {
-        pageHeader.courseTitle.text(lecObj.courseTitle);
-        pageHeader.lecTitle.text(lecObj.lectureTitle + " ");
-        pageHeader.slideNumber.text("Slide " + lecObj.pages[slideNum].pageID);
+        /* Sets the headers back to the default when slide player is turned off */
+        if (lecObj == null && slideNum == null) {
+            pageHeader.courseTitle.text("Welcome to Slide Master!");
+            pageHeader.lecTitle.text("Slide Player");
+            pageHeader.slideNumber.text(" Slide Number");
+            slideController.getSlideFrame().css('background-color', 'black');
+            slideController.getNoteArea().text("");
+        }
+        else {
+            pageHeader.courseTitle.text(lecObj.courseTitle);
+            pageHeader.lecTitle.text(lecObj.lectureTitle + " ");
+            pageHeader.slideNumber.text("Slide " + lecObj.pages[slideNum].pageID);
+        }
     };
 
     /* Creates the slide by creating the elements and appending it to the slide iframe */
@@ -49,9 +51,21 @@ $(document).ready(function() {
 
     /* Changes the current slide */
     var changeSlide = function(command) {
-        (command == "next") && (slideController.curSlideNum < slideController.SLIDEMAX - 1) ? slideController.curSlideNum++: null;
-        (command == "prev") && (slideController.curSlideNum > slideController.SLIDEMIN) ? slideController.curSlideNum--: null;
+        (command == "prev") && (slideController.curSlideNum < slideController.SLIDEMAX - 1) ? slideController.curSlideNum++: null;
+        (command == "next") && (slideController.curSlideNum > slideController.SLIDEMIN) ? slideController.curSlideNum--: null;
         createSlide(slideController.lecture, slideController.curSlideNum);
+    };
+
+    /* Loads the notes and appends it to the notes section */
+    var loadNotes = function() {
+        $.get("/loadLecture", function(lecture) {
+            slideController.lecture = lecture;
+            var noteArea = slideController.getNoteArea();
+            var usrNote = slideController.getNoteInput();
+            var curSlide = slideController.curSlideNum;
+            var notes = slideController.lecture.pages[curSlide].notes;
+            noteArea.text(notes);
+        });
     };
 
     /* Adds the handler for the add note button */
@@ -62,7 +76,6 @@ $(document).ready(function() {
             var usrNote = slideController.getNoteInput();
             /* Gets the Lecture JSON object */
             $.get("/loadLecture", function(lecture) {
-                console.log(lecture);
                 slideController.lecture = lecture;
             });
 
@@ -71,6 +84,7 @@ $(document).ready(function() {
 
             /* Updated lecture object that is sent over to the server */
             var updatedLecObj = slideController.lecture;
+            
             /* Sending the newly update lecture object back to the server */
             $.ajax({
                 url: "/saveNote",
@@ -83,7 +97,7 @@ $(document).ready(function() {
             });
 
             /* Updates the note area with users text and emptys the input textfield for new notes */
-            noteArea.text(usrNote.val());
+            noteArea.append(usrNote.val() + "<br/>");
             usrNote.val('');
         });
     };
@@ -105,25 +119,33 @@ $(document).ready(function() {
         $.get("/loadLecture", function(lecture) {
             /* Initializes the lecture object with the data that is sent back from the server */
             slideController.lecture = lecture;
+
             /* Creates the first slide */
             createSlide(lecture, 0);
+
+            /* Obtains the note area from the previous notes */
+            slideController.getNoteArea().text(slideController.lecture.pages[0].notes);
+
             /*Registers the Add Notes button handler */
             addNoteBtnHandler();
         });
 
         /* Turns ON the slide show */
         slideController.SLIDESHOW_ON = true;
-
+        
         /* Changes the background color */
         slideController.getSlideFrame().css("background-color", "grey");
-
+        
+        /* Disables the Add note button */
+        slideController.getAddNoteBtn().prop('disabled', false);
     });
 
     /* Proceeds to the next slide */
     $(icons.up).click(function() {
         checkContents();
         if (slideController.SLIDESHOW_ON) {
-            changeSlide("next");
+            changeSlide("prev");
+            loadNotes();
         }
     });
 
@@ -131,16 +153,21 @@ $(document).ready(function() {
     $(icons.down).click(function() {
         checkContents();
         if (slideController.SLIDESHOW_ON) {
-            changeSlide("prev");
+            changeSlide("next");
+            loadNotes();
         }
     });
 
     /* Closes the presentation */
     $(icons.stop).click(function() {
         checkContents();
-        slideController.SLIDESHOW_ON = false;
+        if (slideController.SLIDESHOW_ON) {
+            slideController.SLIDESHOW_ON = false;
+            slideController.slide = null;
+            changeHeaderInfo(null, null);
+            slideController.getAddNoteBtn().prop('disabled', true);
+        }
     });
-
 
     /* Plays audio during the presentation */
     $(icons.audio).click(function() {

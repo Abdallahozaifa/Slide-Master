@@ -9,7 +9,7 @@ var slideController = {
      curSlideNum: 0, // current slide number that represents the current slide
      SLIDEMIN: 0, // minimum slide number constant 
      SLIDEMAX: 10, // maximum slide number constant
-     SLIDESHOW_ON: false, // wether the slide show is on or not
+     SLIDESHOW_ON: false, // whether the slide show is on or not
 
      /* Grabs the div element inside the first iframe */
      getSlideFrame: function() {
@@ -24,7 +24,7 @@ var slideController = {
      getAddNoteBtn: function() {
           return $($("iframe")[1]).contents().find("#addNote");
      },
-
+     
      /* Grabs the note area that displays the notes in the third iframe */
      getNoteArea: function() {
           return $($("iframe")[2]).contents().find("#user-notes");
