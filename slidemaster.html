@@ -25,7 +25,7 @@
     <div class="row">
         <div class="large-8 columns inline-list right">
             <!--<h1><img src="http://placehold.it/400x100&text=Logo"/></h1>-->
-            <h1> Welcome to Slide Master!</h1>
+            <h1 id="course-title"> Welcome to Slide Master!</h1>
         </div>
         <div class="large-9 columns">
             <ul class="inline-list right">
@@ -40,13 +40,13 @@
         .		Slide Player Area       .
         ..............................-->
         <div class="large-9 push-0 columns">
-            <h3>Slide Player <small>Slide Number</small></h3>
+            <h3><span id="lecture-title">Slide Player </span><small id="slide-number">Slide Number</small></h3>
             <iframe src="SlideMaster/slide" width="1000" height="500" id="slideFrame"> </iframe>
             <div>
                 <iframe src="resources/noteInterface" width="1000" height="50" id="noteInterface" fileName=""></iframe>
             </div>
             <div>
-                <iframe src="" width="1000" height="100"></iframe>
+                <iframe src="resources/noteDisplay" width="1000" height="100"></iframe>
             </div>
         </div>
 

@@ -33,18 +33,18 @@ app.get('/SlideMaster/slide', function(req, res) {
 
 
 app.post('/SlideMaster/addNote', function(req, res) {
-    var notes;
-    console.log("Reached post method!");
-    // var userNote = queryString.parse(req.data);
+    /* QueryString is a module that stringifies json and parses it */
     var strUserNote = queryString.stringify(req.body);
     var userNote = queryString.parse(strUserNote);
-    console.log(userNote);
-    var filename = userNote.filename; //Get filename attr from req body
-    fs.readFile("resources/" + filename, 'utf8', function(err, data) {
-        if (!err) notes = data;
-        else return console.log(err);
-    });
-    console.log("got request on /SlideMaster/addNote");
+
+    var filename = userNote.filename;
+    var notes;
+    /* Sends the client .... ? */
+    // fs.readFile("resources/" + filename, 'utf8', function(err, data) {
+    //     if (!err) notes = data;
+    //     else return console.log(err);
+    // });
+    console.log("Received request on /SlideMaster/addNote");
 });
 
 app.get('/resources/lecture', function(req, res) {
@@ -54,9 +54,18 @@ app.get('/resources/lecture', function(req, res) {
     });
 });
 
+/* Insert Nodes Iframe URL Handler */
 app.get('/resources/noteInterface', function(req, res) {
     fs.readFile('resources/noteInterface.html', 'utf8', function(err, data) {
-        if (!err) res.send(data)
+        if (!err) res.send(data);
+        else console.log(err);
+    });
+});
+
+/* Display Nodes Iframe URL Handler */
+app.get('/resources/noteDisplay', function(req, res) {
+    fs.readFile('resources/noteDisplay.html', 'utf8', function(err, data) {
+        if (!err) res.send(data);
         else console.log(err);
     });
 });
@@ -66,4 +75,3 @@ app.get('/resources/noteInterface', function(req, res) {
 app.listen(process.env.PORT, function() {
     console.log('App listening at https://slide-master-abdallahozaifa.c9users.io/SlideMaster');
 });
-
