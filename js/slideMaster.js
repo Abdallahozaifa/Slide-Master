@@ -1,14 +1,13 @@
-/* Global Iframe Contents */
-
+/* Global Space */
 var noteInput; //The text field users can add notes via
 var addBtn; //Button pressed to append note input to notes
 var noteArea; //Area notes are displayed in
 var slideInfo; //The slide dislay iframe
-
-var lecture;
-var curSlideNum = 0;
-var SLIDEMIN = 0;
-var SLIDEMAX = 10;
+var lecture; // lecture object that contains all the slides
+var curSlideNum = 0; // current slide number that represents the current slide
+var SLIDEMIN = 0; // minimum slide number constant 
+var SLIDEMAX = 10; // maximum slide number constant
+var SLIDESHOW_ON = false; // wether the slide show is on or not
 
 $(document).ready(function() {
     
@@ -62,7 +61,7 @@ $(document).ready(function() {
         debugOut(slideInfo);
     };
 
-    /* Slide Header at the top where it says Slide Player and slide Number*/
+    /* Page header object that contains the course title, lecture title, and current slide number */
     var pageHeader = {
         courseTitle: $("#course-title"),
         lecTitle: $("#lecture-title"),
@@ -100,56 +99,47 @@ $(document).ready(function() {
     };
 
     /* Icons click handlers for all the icons */
-    //Opens presentation file from /resources/xxx.json
-    //If a presentation is open, returns to slide 1
     $(icons.play).click(function() {
-        debugOut("Play!");
         checkContents();
-        printFrameContents();
+        /*Opens presentation file from /resources/xxx.json*/
         $.getJSON("resources/lecture.json", function(data) {
             lecture = data;
-            debugOut(data);
             createSlide(data, 0);
         });
+        SLIDESHOW_ON = true;
     });
 
-    //Moves backwards in slide order if not at the beginning already
+    /* Proceeds to the next slide */
     $(icons.up).click(function() {
-        debugOut("up!");
         checkContents();
-        printFrameContents();
-        changeSlide("next");
+        if(SLIDESHOW_ON){
+            changeSlide("next");
+        }
     });
 
-    /* Moves forward to the next slide*/
+    /* Moves back a slide */
     $(icons.down).click(function() {
-        debugOut("down!");
         checkContents();
-        printFrameContents();
-        changeSlide("prev");
+        if(SLIDESHOW_ON){
+            changeSlide("prev");
+        }
     });
 
-    //Closes a slide presentation if one is open, else does nothing
-    //Writes the presentation back to file
+    /* Closes the presentation */
     $(icons.stop).click(function() {
-        debugOut("Stop!");
         checkContents();
-        printFrameContents();
+        SLIDESHOW_ON = false;
     });
 
 
-    /**/
+    /* Plays audio during the presentation */
     $(icons.audio).click(function() {
-        debugOut("audio!");
         checkContents();
-        printFrameContents();
     });
 
-
+    /* Saves the notes */
     $(icons.save).click(function() {
-        debugOut("save!");
         checkContents();
-        printFrameContents();
     });
 
     //Event handler for the add note button
@@ -161,6 +151,4 @@ $(document).ready(function() {
     //     }
     //     noteArea.val('');
     // });
-
-
 });
