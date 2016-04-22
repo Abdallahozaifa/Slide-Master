@@ -49,18 +49,40 @@ $(document).ready(function() {
 
     /* Changes the current slide */
     var changeSlide = function(command) {
-        (command == "next") && (slideController.curSlideNum < slideController.SLIDEMAX - 1) ? slideController.curSlideNum++ : null;
-        (command == "prev") && (slideController.curSlideNum > slideController.SLIDEMIN) ? slideController.curSlideNum-- : null;
+        (command == "next") && (slideController.curSlideNum < slideController.SLIDEMAX - 1) ? slideController.curSlideNum++: null;
+        (command == "prev") && (slideController.curSlideNum > slideController.SLIDEMIN) ? slideController.curSlideNum--: null;
         createSlide(slideController.lecture, slideController.curSlideNum);
     };
-    
+
     /* Adds the handler for the add note button */
     var addNoteBtnHandler = function() {
         var noteBtn = slideController.getAddNoteBtn();
-        var noteArea = slideController.getNoteArea();
-        var usrNote = slideController.getNoteInput();
-        
         noteBtn.on("click", function() {
+            var noteArea = slideController.getNoteArea();
+            var usrNote = slideController.getNoteInput();
+            /* Gets the Lecture JSON object */
+            $.get("/loadLecture", function(lecture) {
+                console.log(lecture);
+                slideController.lecture = lecture;
+            });
+
+            /* Updates the lecture object with the users notes */
+            slideController.lecture.pages[slideController.curSlideNum].notes = usrNote.val();
+
+            /* Updated lecture object that is sent over to the server */
+            var updatedLecObj = slideController.lecture;
+            /* Sending the newly update lecture object back to the server */
+            $.ajax({
+                url: "/saveNote",
+                type: "POST",
+                data: JSON.stringify(updatedLecObj),
+                contentType: "application/json",
+                complete: function(res) {
+                    debugOut(res);
+                }
+            });
+
+            /* Updates the note area with users text and emptys the input textfield for new notes */
             noteArea.text(usrNote.val());
             usrNote.val('');
         });
@@ -80,18 +102,21 @@ $(document).ready(function() {
     $(icons.play).click(function() {
         checkContents();
         /*Opens presentation file from /resources/xxx.json*/
-        $.getJSON("resources/lecture.json", function(data) {
-            slideController.lecture = data;
-            createSlide(data, 0);
+        $.get("/loadLecture", function(lecture) {
+            /* Initializes the lecture object with the data that is sent back from the server */
+            slideController.lecture = lecture;
+            /* Creates the first slide */
+            createSlide(lecture, 0);
+            /*Registers the Add Notes button handler */
+            addNoteBtnHandler();
         });
+
         /* Turns ON the slide show */
         slideController.SLIDESHOW_ON = true;
-        
+
         /* Changes the background color */
         slideController.getSlideFrame().css("background-color", "grey");
-        
-        /*Registers the Add Notes button handler */
-        addNoteBtnHandler();
+
     });
 
     /* Proceeds to the next slide */
