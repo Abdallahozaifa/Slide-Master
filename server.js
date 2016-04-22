@@ -24,7 +24,7 @@ var lecture = {
 
 /* Adds the lecture Object to the store */
 store.add(lecture, function(err) {
-    if (err) throw err; // err if the save failed
+    if (err) console.log(err); // err if the save failed
 });
 
 /* Main Page for Slide Master */
@@ -49,7 +49,7 @@ app.get('/SlideMaster/slide', function(req, res) {
 app.get('/loadLecture', function(req, res) {
     // res.send(lecture);
     store.load('lectureData', function(err, lecture) {
-        if (err) throw err; // err if JSON parsing failed
+        if (err) console.log(err); // err if JSON parsing failed
         res.send(lecture.data);
     });
 });
@@ -58,7 +58,7 @@ app.get('/loadLecture', function(req, res) {
 app.post('/saveNote', function(req, res) {
     /* Removing the previous lecture data */
     store.remove('lectureData', function(err) {
-        if (err) throw err; // err if the file removal failed 
+        if (err) console.log(err); // err if the file removal failed 
     });
 
     /* Creating a new lecture object for the data store */
@@ -69,7 +69,7 @@ app.post('/saveNote', function(req, res) {
 
     /* Adding the new lecture data to the store */
     store.add(lecture, function(err) {
-        if (err) throw err; // err if the save failed
+        if (err) console.log(err); // err if the save failed
     });
 
     // console.log(newLecObj);
