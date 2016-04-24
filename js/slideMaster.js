@@ -99,7 +99,8 @@ $(document).ready(function() {
             var noteArea = slideController.getNoteArea();
             var usrNote = slideController.getNoteInput();
             var lecNotes = slideController.lecture.pages[slideController.curSlideNum].notes;
-
+            
+            /* Detect if the user has entered text in the input field */
             if (usrNote.val() != "") {
                 /* Updates the lecture object with the users notes */
                 if (lecNotes == "")
