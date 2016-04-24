@@ -15,6 +15,12 @@ var slideController = {
      getSlideFrame: function() {
           return $($("iframe")[0]).contents().find("#slide-page");
      },
+     //Clear all contents within the slide frame
+     clearSlideFrame: function(){
+        slideController.getSlideFrame().children().each(function(index, val){
+            val.remove();
+        });     
+     },
      /* Grabs the note input textfield in the second iframe */
      getNoteInput: function() {
           return $($("iframe")[1]).contents().find("#noteContent");
@@ -29,4 +35,5 @@ var slideController = {
      getNoteArea: function() {
           return $($("iframe")[2]).contents().find("#user-notes");
      }
+     
 };

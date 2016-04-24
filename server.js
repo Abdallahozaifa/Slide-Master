@@ -60,7 +60,7 @@ app.post('/saveNote', function(req, res) {
     store.remove('lectureData', function(err) {
         if (err) console.log(err); // err if the file removal failed 
     });
-
+    
     /* Creating a new lecture object for the data store */
     var lecture = {
         id: "lectureData",

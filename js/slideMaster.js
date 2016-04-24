@@ -8,7 +8,7 @@ $(document).ready(function() {
         }
     };
 
-    //Gets iframe contents if any control variables are null
+    /* Gets iframe contents if any control variables are null */
     var checkContents = function() {
         if (slideController.noteInput == undefined)
             slideController.noteInput = slideController.getNoteInput();
@@ -46,7 +46,29 @@ $(document).ready(function() {
 
     /* Creates the slide by creating the elements and appending it to the slide iframe */
     var createSlide = function(lecObj, slideNum) {
-        changeHeaderInfo(lecObj, slideNum);
+        changeHeaderInfo(lecObj, slideNum); //Update the header contents
+
+        var entities = lecObj.pages[slideNum].entities; //Extract and iterate through entities
+
+        entities.forEach(function(entity, j, entities) {
+            var elt;
+
+            //Create the appropriate html object for each element (header, text, image)
+            //Need to handle how images are stored?
+            if (entity.entityType == "header") {
+                elt = $("<h1></h1>").text(entity.entityContent);
+            }
+            else if (entity.entityType == "text") {
+                elt = $("<p></p>").text(entity.entityContent);
+            }
+            else if (entity.entityType == "image") {
+                elt = $("<img></img>").attr('img', entity.Content);
+            }
+
+            $(slideController.getSlideFrame()).append(elt); //Append the element
+            //Style/Position element
+        });
+
     };
 
     /* Changes the current slide */
@@ -64,41 +86,61 @@ $(document).ready(function() {
             var usrNote = slideController.getNoteInput();
             var curSlide = slideController.curSlideNum;
             var notes = slideController.lecture.pages[curSlide].notes;
-            noteArea.text(notes);
+            noteArea.html(notes);
         });
     };
 
     /* Adds the handler for the add note button */
     var addNoteBtnHandler = function() {
         var noteBtn = slideController.getAddNoteBtn();
+
+        /* Click handler for the adding notes button */
         noteBtn.on("click", function() {
             var noteArea = slideController.getNoteArea();
             var usrNote = slideController.getNoteInput();
-            /* Gets the Lecture JSON object */
-            $.get("/loadLecture", function(lecture) {
-                slideController.lecture = lecture;
-            });
+            var lecNotes = slideController.lecture.pages[slideController.curSlideNum].notes;
 
-            /* Updates the lecture object with the users notes */
-            slideController.lecture.pages[slideController.curSlideNum].notes = usrNote.val();
+            if (usrNote.val() != "") {
+                /* Updates the lecture object with the users notes */
+                if (lecNotes == "")
+                    slideController.lecture.pages[slideController.curSlideNum].notes = usrNote.val();
+                else
+                    slideController.lecture.pages[slideController.curSlideNum].notes = " <br/> " + usrNote.val();
 
-            /* Updated lecture object that is sent over to the server */
-            var updatedLecObj = slideController.lecture;
-            
-            /* Sending the newly update lecture object back to the server */
-            $.ajax({
-                url: "/saveNote",
-                type: "POST",
-                data: JSON.stringify(updatedLecObj),
-                contentType: "application/json",
-                complete: function(res) {
-                    debugOut(res);
-                }
-            });
+                /* Gets the Lecture JSON object */
+                $.ajax({
+                    url: "/loadLecture",
+                    type: "GET",
+                    success: function(lecture) {
+                        var oldLecNotes = lecture.pages[slideController.curSlideNum].notes;
+                        var newLecNotes = slideController.lecture.pages[slideController.curSlideNum].notes;
+                        slideController.lecture.pages[slideController.curSlideNum].notes = oldLecNotes + newLecNotes;
+                    },
+                    async: false
+                });
 
-            /* Updates the note area with users text and emptys the input textfield for new notes */
-            noteArea.append(usrNote.val() + "<br/>");
-            usrNote.val('');
+                /* Updated lecture object that is sent over to the server */
+                var updatedLecObj = slideController.lecture;
+
+                /* Sending the newly update lecture object back to the server */
+                $.ajax({
+                    url: "/saveNote",
+                    type: "POST",
+                    data: JSON.stringify(updatedLecObj),
+                    contentType: "application/json",
+                    complete: function(res) {
+                        debugOut(res);
+                    }
+                });
+
+                /* Updates the note area with users text and emptys the input textfield for new notes */
+                if (noteArea.text() == "")
+                    noteArea.append(usrNote.val());
+                else
+                    noteArea.append("<br/>" + usrNote.val());
+
+                usrNote.val('');
+            }
         });
     };
 
@@ -132,10 +174,10 @@ $(document).ready(function() {
 
         /* Turns ON the slide show */
         slideController.SLIDESHOW_ON = true;
-        
+
         /* Changes the background color */
         slideController.getSlideFrame().css("background-color", "grey");
-        
+
         /* Disables the Add note button */
         slideController.getAddNoteBtn().prop('disabled', false);
     });
@@ -143,6 +185,7 @@ $(document).ready(function() {
     /* Proceeds to the next slide */
     $(icons.up).click(function() {
         checkContents();
+        slideController.clearSlideFrame();
         if (slideController.SLIDESHOW_ON) {
             changeSlide("prev");
             loadNotes();
@@ -152,6 +195,7 @@ $(document).ready(function() {
     /* Moves back a slide */
     $(icons.down).click(function() {
         checkContents();
+        slideController.clearSlideFrame();
         if (slideController.SLIDESHOW_ON) {
             changeSlide("next");
             loadNotes();
@@ -167,6 +211,7 @@ $(document).ready(function() {
             changeHeaderInfo(null, null);
             slideController.getAddNoteBtn().prop('disabled', true);
         }
+        slideController.clearSlideFrame();
     });
 
     /* Plays audio during the presentation */

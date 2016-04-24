@@ -24,7 +24,7 @@
             "entityAnimation": "fadeIn"
           }
         ],
-        "notes": "hello Whats up cool"
+        "notes": "cool <br/> hello"
       },
       {
         "lectureID": "lecture001",
@@ -57,7 +57,7 @@
             "entityAnimation": "fadeIn"
           }
         ],
-        "notes": "ya"
+        "notes": ""
       },
       {
         "lectureID": "lecture001",
@@ -90,7 +90,7 @@
             "entityAnimation": "fadeIn"
           }
         ],
-        "notes": "sdfsdf"
+        "notes": ""
       },
       {
         "lectureID": "lecture001",
