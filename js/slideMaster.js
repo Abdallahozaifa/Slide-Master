@@ -102,12 +102,13 @@ $(document).ready(function() {
             
             /* Detect if the user has entered text in the input field */
             if (usrNote.val() != "") {
+                
                 /* Updates the lecture object with the users notes */
                 if (lecNotes == "")
                     slideController.lecture.pages[slideController.curSlideNum].notes = usrNote.val();
                 else
                     slideController.lecture.pages[slideController.curSlideNum].notes = " <br/> " + usrNote.val();
-
+                https://github.com/BlackrockDigital/startbootstrap-agency.git
                 /* Gets the Lecture JSON object */
                 $.ajax({
                     url: "/loadLecture",
