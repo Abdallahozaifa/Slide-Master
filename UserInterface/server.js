@@ -9,17 +9,21 @@ var lectureContent = fs.readFileSync('resources/lecture.json');
 var lectureObj = JSON.parse(lectureContent);
 
 /* Serving static files in express */
-app.use('/css', express.static('css'));
-app.use('/js', express.static('js'));
-app.use('/resources', express.static('resources'));
-app.use('/font-awesome', express.static('font-awesome'));
-app.use('/img', express.static('img'));
+app.use('startbootstrap-agency/css', express.static('css'));
+app.use('/startbootstrap-agency/js', express.static('js'));
+app.use('/startbootstrap-agency/font-awesome', express.static('font-awesome'));
+app.use('/startbootstrap-agency/fonts', express.static('fonts'));
+app.use('/startbootstrap-agency/less', express.static('less'));
+app.use('/startbootstrap-agency/img', express.static('img'));
+app.use('/startbootstrap-agency/mail', express.static('mail'));
 
+app.use('/resources', express.static('resources'));
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
 
+console.log("This file is running!");
 var lecture = {
     id: "lectureData",
     data: lectureObj
@@ -34,7 +38,7 @@ store.add(lecture, function(err) {
 app.get('/SlideMaster', function(req, res) {
 
     /* Sends the slidemaster html page to the user */
-    fs.readFile('slidemaster.html', 'utf8', function(err, data) {
+    fs.readFile('startbootstrap-agency/index.html', 'utf8', function(err, data) {
         if (!err) res.send(data);
         else return console.log(err);
     });

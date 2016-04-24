@@ -148,12 +148,12 @@ $(document).ready(function() {
 
     /* Icons object that contains all the icons on the page */
     var icons = {
-        play: $("i")[0],
-        up: $("i")[1],
-        down: $("i")[2],
-        stop: $("i")[3],
-        audio: $("i")[4],
-        save: $("i")[5]
+        play: $("#services > div > div > div > div.col-md-1.col-sm-6 > ul > div:nth-child(2) > i"),
+        up: $("#services > div > div > div > div.col-md-1.col-sm-6 > ul > div:nth-child(3) > i"),
+        down: $("#services > div > div > div > div.col-md-1.col-sm-6 > ul > div:nth-child(4) > i"),
+        stop: $("#services > div > div > div > div.col-md-1.col-sm-6 > ul > div:nth-child(5) > i"),
+        audio: $("#services > div > div > div > div.col-md-1.col-sm-6 > ul > div:nth-child(6) > i"),
+        save: $("#services > div > div > div > div.col-md-1.col-sm-6 > ul > div:nth-child(7) > i")
     };
 
     /* Icons click handlers for all the icons */
