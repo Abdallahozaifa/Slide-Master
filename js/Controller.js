@@ -112,6 +112,4 @@ var slideController = {
                async: false
           });
      }
-
-
 };

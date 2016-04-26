@@ -14,7 +14,6 @@ app.use('/js', express.static('js'));
 app.use('/resources', express.static('resources'));
 app.use('/font-awesome', express.static('font-awesome'));
 app.use('/img', express.static('img'));
-
 app.use(bodyParser.urlencoded({
     extended: false
 }));
@@ -34,7 +33,7 @@ store.add(lecture, function(err) {
 /* Main Page for Slide Master */
 app.get('/SlideMaster', function(req, res) {
 
-    /* Sends the slidemaster html page to the user */
+    /* Sends the index html page to the user */
     fs.readFile('index.html', 'utf8', function(err, data) {
         if (!err) res.send(data);
         else return console.log(err);
