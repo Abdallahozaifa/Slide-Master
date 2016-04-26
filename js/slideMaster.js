@@ -1,13 +1,5 @@
 $(document).ready(function() {
 
-    var debugModeOn = true;
-    /* Prints the string out to the console depending on debug mode */
-    var debugOut = function(str) {
-        if (debugModeOn) {
-            console.log(str);
-        }
-    };
-
     /* Hides the audio on icon */
     $(slideController.audioOn).hide();
 
@@ -48,7 +40,7 @@ $(document).ready(function() {
         newPos += "%";
 
         return newPos;
-    }
+    };
 
     /* Creates the slide by creating the elements and appending it to the slide iframe */
     var createSlide = function(lecObj, slideNum) {
@@ -98,30 +90,6 @@ $(document).ready(function() {
         createSlide(slideController.lecture, slideController.curSlideNum);
     };
 
-    /* Loads the notes and appends it to the notes section */
-    var loadNotes = function() {
-        $.get("/loadLecture", function(lecture) {
-            slideController.lecture = lecture;
-            var noteArea = slideController.getNoteArea();
-            var usrNote = slideController.getNoteInput();
-            var curSlide = slideController.curSlideNum;
-            var notes = slideController.lecture.pages[curSlide].notes;
-            noteArea.html(notes);
-        });
-    };
-
-    /* Sending the newly update lecture object back to the server */
-    var saveNotes = function(lecture) {
-        $.ajax({
-            url: "/saveNote",
-            type: "POST",
-            data: JSON.stringify(lecture),
-            contentType: "application/json",
-            complete: function(res) {
-                debugOut(res);
-            }
-        });
-    };
     /* Adds the handler for the add note button */
     var addNoteBtnHandler = function() {
         var noteBtn = slideController.getAddNoteBtn();
@@ -141,23 +109,14 @@ $(document).ready(function() {
                 else
                     slideController.lecture.pages[slideController.curSlideNum].notes = "<br/>" + usrNote.val();
 
-                /* Gets the Lecture JSON object */
-                $.ajax({
-                    url: "/loadLecture",
-                    type: "GET",
-                    success: function(lecture) {
-                        var oldLecNotes = lecture.pages[slideController.curSlideNum].notes;
-                        var newLecNotes = slideController.lecture.pages[slideController.curSlideNum].notes;
-                        slideController.lecture.pages[slideController.curSlideNum].notes = oldLecNotes + newLecNotes;
-                    },
-                    async: false
-                });
+                /* Synchronizes the old lecture object with the new one */
+                slideController.syncNotes();
 
                 /* Updated lecture object that is sent over to the server */
                 var updatedLecObj = slideController.lecture;
 
                 /* Saves the notes */
-                saveNotes(updatedLecObj);
+                slideController.saveNotes(updatedLecObj);
 
                 /* Updates the note area with users text and emptys the input textfield for new notes */
                 if (noteArea.text() == "")
@@ -169,15 +128,15 @@ $(document).ready(function() {
             }
         });
     };
-    
+
     /* Clears the notes from the current slide */
     var clearNoteButtonHandler = function() {
         var clearNoteButton = slideController.getClearNoteBtn();
-        
+
         /* Clearn note button handler which clears the content and saves the notes */
         clearNoteButton.click(function() {
             slideController.clearNoteContent();
-            saveNotes(slideController.lecture);
+            slideController.saveNotes(slideController.lecture);
         });
     };
 
@@ -198,7 +157,7 @@ $(document).ready(function() {
 
             /* Registers the Add Notes button handler */
             addNoteBtnHandler();
-            
+
             /* Registers the clear notes button handler */
             clearNoteButtonHandler();
         });
@@ -222,7 +181,7 @@ $(document).ready(function() {
         slideController.clearSlideFrame();
         if (slideController.SLIDESHOW_ON) {
             changeSlide("prev");
-            loadNotes();
+            slideController.loadNotes();
         }
     });
 
@@ -232,7 +191,7 @@ $(document).ready(function() {
         slideController.clearSlideFrame();
         if (slideController.SLIDESHOW_ON) {
             changeSlide("next");
-            loadNotes();
+            slideController.loadNotes();
         }
     });
 
@@ -272,7 +231,7 @@ $(document).ready(function() {
     /* Saves the notes */
     $(slideController.save).click(function() {
         if (slideController.SLIDESHOW_ON) {
-            saveNotes(slideController.lecture);
+            slideController.saveNotes(slideController.lecture);
         }
     });
 

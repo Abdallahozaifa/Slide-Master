@@ -35,7 +35,7 @@ store.add(lecture, function(err) {
 app.get('/SlideMaster', function(req, res) {
 
     /* Sends the slidemaster html page to the user */
-    fs.readFile('slidemaster.html', 'utf8', function(err, data) {
+    fs.readFile('index.html', 'utf8', function(err, data) {
         if (!err) res.send(data);
         else return console.log(err);
     });
