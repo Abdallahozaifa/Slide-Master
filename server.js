@@ -20,6 +20,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+/* Creating the initial lecture object */
 var lecture = {
     id: "lectureData",
     data: lectureObj

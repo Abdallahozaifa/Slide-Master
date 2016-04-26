@@ -15,16 +15,41 @@
             "lectureID": "lecture001",
             "pageID": "1",
             "entityID": "lecture001-1-01",
+            "entityType": "header",
+            "entityLocation": {
+              "x": 50,
+              "y": 5
+            },
+            "entityContent": "SlideMaster Slide Player",
+            "entityAnimation": "none"
+          },
+          {
+            "lectureID": "lecture001",
+            "pageID": "1",
+            "entityID": "lecture001-1-01",
             "entityType": "text",
             "entityLocation": {
-              "x": 20,
+              "x": 5,
+              "y": 18
+            },
+            "entityContent": "This is our slide player. It uses NodeJS, and other stuff",
+            "entityAnimation": "none"
+          },
+          {
+            "lectureID": "lecture001",
+            "pageID": "1",
+            "entityID": "lecture001-1-03",
+            "entityType": "image",
+            "entityLocation": {
+              "x": 50,
               "y": 30
             },
-            "entityContent": "Twenty carrots",
-            "entityAnimation": "fadeIn"
+            "entityContent": "http://www.keenthemes.com/preview/metronic/theme/assets/global/plugins/jcrop/demos/demo_files/image1.jpg",
+            "entityAnimation": "none",
+            "entityWidth": 50
           }
         ],
-        "notes": "Whats up man! <br/> cool "
+        "notes": "Yo whats up Julian!!!<br/>killing it <br/>sdfsdfsdf"
       },
       {
         "lectureID": "lecture001",
