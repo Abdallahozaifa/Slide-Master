@@ -40,6 +40,13 @@ app.get('/SlideMaster', function(req, res) {
     });
 });
 
+app.get('/NewUserInterface', function(req,res) {
+    fs.readFile('NewUserInterface.html', 'utf8', function(err, data) {
+        if (!err) res.send(data);
+        else return console.log(err);
+    });
+});
+
 /* Sends the slide.html template */
 app.get('/SlideMaster/slide', function(req, res) {
     fs.readFile('templates/slide.html', 'utf8', function(err, data) {
@@ -63,7 +70,7 @@ app.post('/saveNote', function(req, res) {
     store.remove('lectureData', function(err) {
         if (err) console.log(err); // err if the file removal failed 
     });
-    
+
     /* Creating a new lecture object for the data store */
     var lecture = {
         id: "lectureData",

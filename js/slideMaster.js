@@ -2,6 +2,7 @@ $(document).ready(function() {
 
     /* Hides the audio on icon */
     View.hideAudioOnIcon();
+    $(slideController.stop).hide();
 
     /* Icons click handlers for all the icons */
     $(slideController.play).click(function() {
@@ -36,8 +37,26 @@ $(document).ready(function() {
 
         /* Enables the clear note button */
         slideController.getClearNoteBtn().prop('disabled', false);
+
+        View.hidePlayIcon();
+        View.showStopIcon();
     });
 
+    /* Closes the presentation */
+    $(slideController.stop).click(function() {
+        View.checkContents();
+        if (slideController.SLIDESHOW_ON) {
+            slideController.SLIDESHOW_ON = false;
+            slideController.slide = null;
+            View.changeHeaderInfo(null, null);
+            slideController.getAddNoteBtn().prop('disabled', true);
+            slideController.getClearNoteBtn().prop('disabled', true);
+            View.hideStopIcon();
+            View.showPlayIcon();
+        }
+        slideController.clearSlideFrame();
+    });
+    
     /* Proceeds to the next slide */
     $(slideController.up).click(function() {
         View.checkContents();
@@ -58,26 +77,13 @@ $(document).ready(function() {
         }
     });
 
-    /* Closes the presentation */
-    $(slideController.stop).click(function() {
-        View.checkContents();
-        if (slideController.SLIDESHOW_ON) {
-            slideController.SLIDESHOW_ON = false;
-            slideController.slide = null;
-            View.changeHeaderInfo(null, null);
-            slideController.getAddNoteBtn().prop('disabled', true);
-            slideController.getClearNoteBtn().prop('disabled', true);
-        }
-        slideController.clearSlideFrame();
-    });
-
     /* Plays audio during the presentation */
     $(slideController.audioOff).click(function() {
         View.checkContents();
         if (slideController.SLIDESHOW_ON) {
             View.showAudioOnIcon();
             View.hideAudioOffIcon();
-            // Play audio
+            View.playAudio();
         }
     });
 
@@ -87,15 +93,24 @@ $(document).ready(function() {
         if (slideController.SLIDESHOW_ON) {
             View.hideAudioOnIcon();
             View.showAudioOffIcon();
-            // Stop audio
+            View.pauseAudio();
         }
     });
 
     /* Saves the notes */
-    $(slideController.save).click(function() {
+    $(slideController.fullScreen).click(function() {
         if (slideController.SLIDESHOW_ON) {
             slideController.saveNotes(slideController.lecture);
         }
     });
 
+    /* Prevent form submission for add button */
+    slideController.getAddNoteBtn().click(function(event) {
+        event.preventDefault();
+    });
+
+    /* Prevent form submission for clear button */
+    slideController.getClearNoteBtn().click(function(event) {
+        event.preventDefault();
+    });
 });

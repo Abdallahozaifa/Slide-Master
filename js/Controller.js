@@ -1,4 +1,4 @@
-/* Slide Controller that contains all the slide componenets neccessary to control the slide master */
+/* Slide Controller that contains all the slide components neccessary to control the slide master */
 var slideController = {
 
      /* Slide Components */
@@ -25,7 +25,7 @@ var slideController = {
      stop: $("#stop-icon"),
      audioOff: $("#volume-off-icon"),
      audioOn: $("#volume-on-icon"),
-     save: $("#save-icon"),
+     fullScreen: $("#full-screen-icon"),
 
      /* Prints the string out to the console depending on debug mode */
      debugOut: function(str) {
@@ -41,22 +41,22 @@ var slideController = {
 
      /* Grabs the note input textfield in the second iframe */
      getNoteInput: function() {
-          return $($("iframe")[1]).contents().find("#noteContent");
+          return $("body > div:nth-child(3) > div > form > ul > li.notes-area > textarea");
      },
 
      /* Grabs the add button next to the input field in the second iframe */
      getAddNoteBtn: function() {
-          return $($("iframe")[1]).contents().find("#addNote");
+          return $("body > div:nth-child(3) > div > form > ul > li:nth-child(2) > input[type='submit']:nth-child(1)");
      },
 
      /* Gets the clear button in the note input area*/
      getClearNoteBtn: function() {
-          return $($("iframe")[1]).contents().find("#clearNote");
+          return $("body > div:nth-child(3) > div > form > ul > li:nth-child(2) > input[type='submit']:nth-child(2)");
      },
 
      /* Grabs the note area that displays the notes in the third iframe */
      getNoteArea: function() {
-          return $($("iframe")[2]).contents().find("#user-notes");
+          return $("body > div.row-fluid > div.col-md-3.notes > div > ul > li.notes-display > div");
      },
 
      /* Clear all contents within the slide frame */

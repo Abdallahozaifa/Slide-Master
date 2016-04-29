@@ -5,8 +5,10 @@
     "pages": [{
         "lectureID": "lecture001",
         "pageID": "1",
+        "background": "color",
+        "backgroundcolor": "white",
         "pageSequence": "notdefined",
-        "pageAudioURL": "notdefined",
+        "pageAudioURL": "http://soundjax.com/reddo/39239%5EHORSE0.mp3",
         "entities": [{
             "lectureID": "lecture001",
             "pageID": "1",
@@ -47,17 +49,17 @@
         "lectureID": "lecture001",
         "pageID": "2",
         "pageSequence": "notdefined",
-        "pageAudioURL": "notdefined",
+        "pageAudioURL": "undefined",
         "entities": [{
             "lectureID": "lecture001",
             "pageID": "2",
             "entityID": "lecture001-2-01",
-            "entityType": "text",
+            "entityType": "header",
             "entityLocation": {
                 "x": 20,
-                "y": 30
+                "y": 5
             },
-            "entityContent": "I like trains.",
+            "entityContent": "You can take notes!",
             "entityAnimation": "fadeIn"
         }, {
             "lectureID": "lecture001",
@@ -65,10 +67,10 @@
             "entityID": "lecture001-2-02",
             "entityType": "text",
             "entityLocation": {
-                "x": 50,
-                "y": 60
+                "x": 10,
+                "y": 18
             },
-            "entityContent": "Graphics API",
+            "entityContent": "By filling in the text box below, and they will be automatically saved!",
             "entityAnimation": "fadeIn"
         }],
         "notes": ""
@@ -76,7 +78,7 @@
         "lectureID": "lecture001",
         "pageID": "3",
         "pageSequence": "notdefined",
-        "pageAudioURL": "notdefined",
+        "pageAudioURL": "undefined",
         "entities": [{
             "lectureID": "lecture001",
             "pageID": "3",
@@ -105,7 +107,7 @@
         "lectureID": "lecture001",
         "pageID": "4",
         "pageSequence": "notdefined",
-        "pageAudioURL": "notdefined",
+        "pageAudioURL": "undefined",
         "entities": [{
             "lectureID": "lecture001",
             "pageID": "4",
@@ -134,7 +136,7 @@
         "lectureID": "lecture001",
         "pageID": "5",
         "pageSequence": "notdefined",
-        "pageAudioURL": "notdefined",
+        "pageAudioURL": "undefined",
         "entities": [{
             "lectureID": "lecture001",
             "pageID": "5",
@@ -163,7 +165,7 @@
         "lectureID": "lecture001",
         "pageID": "6",
         "pageSequence": "notdefined",
-        "pageAudioURL": "notdefined",
+        "pageAudioURL": "undefined",
         "entities": [{
             "lectureID": "lecture001",
             "pageID": "6",
@@ -192,7 +194,7 @@
         "lectureID": "lecture001",
         "pageID": "7",
         "pageSequence": "notdefined",
-        "pageAudioURL": "notdefined",
+        "pageAudioURL": "undefined",
         "entities": [{
             "lectureID": "lecture001",
             "pageID": "7",
@@ -221,7 +223,7 @@
         "lectureID": "lecture001",
         "pageID": "8",
         "pageSequence": "notdefined",
-        "pageAudioURL": "notdefined",
+        "pageAudioURL": "undefined",
         "entities": [{
             "lectureID": "lecture001",
             "pageID": "8",
@@ -250,7 +252,7 @@
         "lectureID": "lecture001",
         "pageID": "9",
         "pageSequence": "notdefined",
-        "pageAudioURL": "notdefined",
+        "pageAudioURL": "undefined",
         "entities": [{
             "lectureID": "lecture001",
             "pageID": "9",
@@ -279,7 +281,7 @@
         "lectureID": "lecture001",
         "pageID": "10",
         "pageSequence": "notdefined",
-        "pageAudioURL": "notdefined",
+        "pageAudioURL": "undefined",
         "entities": [{
             "lectureID": "lecture001",
             "pageID": "10",
