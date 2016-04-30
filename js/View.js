@@ -1,3 +1,4 @@
+/* global slideController, $ */
 /* View component that contains all the components neccessary for the visual elements of the web slide player */
 var View = {
 

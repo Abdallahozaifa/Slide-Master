@@ -1,3 +1,4 @@
+/* global slideController, $, View*/
 $(document).ready(function() {
 
     /* Hides the audio on icon */

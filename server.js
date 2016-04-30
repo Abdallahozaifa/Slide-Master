@@ -2,7 +2,6 @@
 var express = require('express');
 var fs = require('fs');
 var app = express();
-var queryString = require("querystring");
 var bodyParser = require("body-parser");
 var store = require('json-fs-store')('./lectureData'); /* Creates a directory called lectureData */
 var lectureContent = fs.readFileSync('resources/lecture.json');
@@ -40,8 +39,8 @@ app.get('/SlideMaster', function(req, res) {
     });
 });
 
-app.get('/NewUserInterface', function(req,res) {
-    fs.readFile('NewUserInterface.html', 'utf8', function(err, data) {
+app.get('/demo', function(req,res) {
+    fs.readFile('slidemaster.html', 'utf8', function(err, data) {
         if (!err) res.send(data);
         else return console.log(err);
     });
@@ -84,22 +83,6 @@ app.post('/saveNote', function(req, res) {
 
     // console.log(newLecObj);
     res.send("Saved Successfully!");
-});
-
-/* Insert Nodes Iframe URL Handler */
-app.get('/resources/noteInterface', function(req, res) {
-    fs.readFile('resources/noteInterface.html', 'utf8', function(err, data) {
-        if (!err) res.send(data);
-        else console.log(err);
-    });
-});
-
-/* Display Nodes Iframe URL Handler */
-app.get('/resources/noteDisplay', function(req, res) {
-    fs.readFile('resources/noteDisplay.html', 'utf8', function(err, data) {
-        if (!err) res.send(data);
-        else console.log(err);
-    });
 });
 
 /* Listens on the cloud9 Port */
