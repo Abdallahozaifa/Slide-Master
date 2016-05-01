@@ -88,7 +88,6 @@ app.post('/saveNote', function(req, res) {
     res.send("Saved Successfully!");
 });
 
-
 /* Listens on the Server Port */
 var server = app.listen(process.env.PORT || '8080', '0.0.0.0', function() {
   console.log('App listening at http://%s:%s', server.address().address,
@@ -96,4 +95,3 @@ var server = app.listen(process.env.PORT || '8080', '0.0.0.0', function() {
   console.log('Press Ctrl+C to quit.');
 });
 // [END app]
-
