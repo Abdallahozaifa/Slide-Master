@@ -167,18 +167,92 @@ var View = {
           (command == "next") && (slideController.curSlideNum > slideController.SLIDEMIN) ? slideController.curSlideNum--: null;
           View.createSlide(slideController.lecture, slideController.curSlideNum);
      },
+     
+     //Adds button handlers to the buttons in the note input area
+     initNoteBtnHandlers: function(){
+          this.addNoteBtnHandler();
+          this.editNoteBtnHandler();
+          this.doneNoteBtnHandler();
+          this.clearNoteBtnHandler();
+     },
 
      /* Clears the notes from the current slide */
-     clearNoteButtonHandler: function() {
+     clearNoteBtnHandler: function() {
           var clearNoteButton = slideController.getClearNoteBtn();
 
-          /* Clearn note button handler which clears the content and saves the notes */
+          /* Clear note button handler which clears the content and saves the notes */
           clearNoteButton.click(function() {
                slideController.clearNoteContent();
                slideController.saveNotes(slideController.lecture);
           });
      },
-
+     
+     //Registers the event handler for the edit button in the note input area
+     editNoteBtnHandler: function() {
+          //Get the edit and done buttons
+          var editNoteButton = slideController.getEditNoteBtn();
+          var doneNoteButton = slideController.getDoneNoteBtn();
+          
+          
+          editNoteButton.click(function(){
+               //other buttons are disabled
+               slideController.getAddNoteBtn().prop('disabled', true);
+               slideController.getClearNoteBtn().prop('disabled', true);
+               
+               //Edit button is replaced by the done button
+               editNoteButton.prop('hidden', true);
+               doneNoteButton.prop('hidden', false);
+               
+               //Prepend a checkbox before each element -- these boxes are grouped
+               slideController.getNoteElements().each(function(i, val){    
+                    //Create a checkbox 
+                    $('<input />', {
+                         type: 'checkbox',
+                         id: i})             //Assign the id attribute its index in relation to all other checkboxes
+                         .prependTo($(val));
+               });
+          });
+     },
+     //Registers the event handler for the done button in the note input area
+     doneNoteBtnHandler: function(){
+          //Get the edit and done buttons
+          var editNoteButton = slideController.getEditNoteBtn();
+          var doneNoteButton = slideController.getDoneNoteBtn();
+          
+          doneNoteButton.click(function(){
+               //Enable other buttons in the note input area
+               slideController.getAddNoteBtn().prop('disabled', false);
+               slideController.getClearNoteBtn().prop('disabled', false);               
+               
+               //Switch edit and done buttons so that edit is shown
+               editNoteButton.prop('hidden', false);
+               doneNoteButton.prop('hidden', true);
+               
+               //Select all checkboxes that are checked
+               var boxes = slideController.getNoteArea().find(":checked");
+               
+               var noteElements = slideController.getNoteElements();            //Select all <p> in note display area
+               var lecNotes = slideController.getLecNotes();                    //Get the lecture note object from the JSON file
+               
+               //Delete all indices corresponding to the id of the checked boxes
+               boxes.each(function(i, val){
+                    var index = $(val).attr("id");
+                    noteElements[index].remove();
+                    
+                    //Remove the same index from the notes element in lecture object
+                    slideController.lecture.pages[slideController.curSlideNum].notes.splice(index, 1); 
+               });
+               
+               //Update notes
+               slideController.syncNotes();
+               slideController.saveNotes(slideController.lecture);
+               
+               //Remove all the checkboxes from beside the notes
+               slideController.getDeleteCheckBoxes().each(function(i, val){
+                    val.remove();
+               });
+          });
+     },
      /* Adds the handler for the add note button */
      addNoteBtnHandler: function() {
           var noteBtn = slideController.getAddNoteBtn();
@@ -193,10 +267,7 @@ var View = {
                if (usrNote.val() != "") {
 
                     /* Updates the lecture object with the users notes */
-                    if (lecNotes == "")
-                         slideController.lecture.pages[slideController.curSlideNum].notes = usrNote.val();
-                    else
-                         slideController.lecture.pages[slideController.curSlideNum].notes = "<br/>" + usrNote.val();
+                    slideController.lecture.pages[slideController.curSlideNum].notes.push(usrNote.val());
 
                     /* Synchronizes the old lecture object with the new one */
                     slideController.syncNotes();
@@ -208,11 +279,8 @@ var View = {
                     slideController.saveNotes(updatedLecObj);
 
                     /* Updates the note area with users text and emptys the input textfield for new notes */
-                    if (noteArea.text() == "")
-                         noteArea.append(usrNote.val());
-                    else
-                         noteArea.append("<br/>" + usrNote.val());
-
+                    /* Updates the note area with users text and emptys the input textfield for new notes */
+                    noteArea.append($("<p></p>").text(usrNote.val()));
                     usrNote.val('');
                }
           });

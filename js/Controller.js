@@ -1,4 +1,4 @@
-/* global $*/
+/* global $, View */
 /* Slide Controller that contains all the slide components neccessary to control the slide master */
 var slideController = {
 
@@ -42,24 +42,48 @@ var slideController = {
 
      /* Grabs the note input textfield in the second iframe */
      getNoteInput: function() {
-          return $("body > div:nth-child(3) > div > form > ul > li.notes-area > textarea");
+          return $("body > div:nth-child(3) > div > div > ul > li.notes-area > textarea");
+     },
+     //Returns all buttons in the note input area
+     getNoteButtons: function() {
+          return $("body > div:nth-child(3) > div > div > ul > li:nth-child(2) > input[type='submit']");
      },
 
      /* Grabs the add button next to the input field in the second iframe */
      getAddNoteBtn: function() {
-          return $("body > div:nth-child(3) > div > form > ul > li:nth-child(2) > input[type='submit']:nth-child(1)");
+          return $("body > div:nth-child(3) > div > div > ul > li:nth-child(2) > input[type='submit']#addNote");
      },
 
      /* Gets the clear button in the note input area*/
      getClearNoteBtn: function() {
-          return $("body > div:nth-child(3) > div > form > ul > li:nth-child(2) > input[type='submit']:nth-child(2)");
+          return $("body > div:nth-child(3) > div > div > ul > li:nth-child(2) > input[type='submit']#clearNote");
      },
-
+     /* Gets the edit button in the note input area*/
+     getEditNoteBtn: function() {
+          return $("body > div:nth-child(3) > div > div > ul > li:nth-child(2) > input[type='submit']#editNote");
+     },
+     /* Gets the done button in the note input area*/
+     getDoneNoteBtn: function() {
+          return $("body > div:nth-child(3) > div > div > ul > li:nth-child(2) > input[type='submit']#doneNote");
+     },
      /* Grabs the note area that displays the notes in the third iframe */
      getNoteArea: function() {
           return $("body > div.row-fluid > div.col-md-3.notes > div > ul > li.notes-display > div");
      },
 
+     //Gets the note variable from the lecture object
+     getLecNotes: function() {
+          return slideController.lecture.pages[slideController.curSlideNum].notes;
+     },
+
+     /* Gets the div elements containing notes in the note display area*/
+     getNoteElements: function() {
+          return slideController.getNoteArea().find("p");
+     },
+     //Returns the set of checkboxes next to each note element
+     getDeleteCheckBoxes: function() {
+          return slideController.getNoteArea().find(":checkbox");
+     },
      /* Clear all contents within the slide frame */
      clearSlideFrame: function() {
           this.getSlideFrame().children().each(function(index, val) {
@@ -69,8 +93,24 @@ var slideController = {
 
      /* Clears all the notes for the current slide*/
      clearNoteContent: function() {
-          this.lecture.pages[this.curSlideNum].notes = "";
-          this.getNoteArea().text("");
+          this.lecture.pages[this.curSlideNum].notes = [];
+          this.getNoteArea().find("p").remove();
+     },
+     //Clears elements from the note display without altering notes in the lecture object
+     clearNoteDisplay: function() {
+          this.getNoteArea().find("p").remove();
+     },
+     /* Enables the buttons in the note input area*/
+     enableNoteButtons: function() {
+          slideController.getNoteButtons().each(function(i, val) {
+               $(val).prop('disabled', false);
+          });
+     },
+     /* Disables the buttons in the note input area*/
+     disableNoteButtons: function() {
+          slideController.getNoteButtons().each(function(i, val) {
+               $(val).prop('disabled', true);
+          });
      },
 
      /* Loads the notes and appends it to the notes section */
@@ -81,7 +121,9 @@ var slideController = {
                var noteArea = _this.getNoteArea();
                var curSlide = _this.curSlideNum;
                var notes = _this.lecture.pages[curSlide].notes;
-               noteArea.html(notes);
+               $(notes).each(function(i, val) {
+                    $("<p></p>").text(val).appendTo(slideController.getNoteArea());
+               });
           });
      },
 
@@ -108,7 +150,35 @@ var slideController = {
                success: function(lecture) {
                     var oldLecNotes = lecture.pages[_this.curSlideNum].notes;
                     var newLecNotes = _this.lecture.pages[_this.curSlideNum].notes;
-                    _this.lecture.pages[_this.curSlideNum].notes = oldLecNotes + newLecNotes;
+                    newLecNotes = newLecNotes.filter(function(val) {
+                         return oldLecNotes.indexOf(val) == -1;
+                    });
+                    //_thi
+               },
+               async: false
+          });
+     },
+
+     /* Loads the initial lecture object from the server */
+     loadInitLec: function() {
+          $.ajax({
+               url: "/loadLecture",
+               type: "GET",
+               success: function(lecture) {
+                    /* Initializes the lecture object with the data that is sent back from the server */
+                    slideController.lecture = lecture;
+
+                    /* Creates the first slide */
+                    View.createSlide(lecture, 0);
+
+                    /* Updates the note area to display notes for the first slide */
+                    $(slideController.lecture.pages[0].notes).each(function(i, val) {
+                         $("<p></p>").text(val).appendTo(slideController.getNoteArea());
+                    });
+
+
+                    /* Registers button handlers for buttons in the note input area */
+                    View.initNoteBtnHandlers();
                },
                async: false
           });

@@ -51,7 +51,9 @@
             "entityWidth": 50
           }
         ],
-        "notes": ""
+        "notes": [
+          "sdfsdfsdf"
+        ]
       },
       {
         "lectureID": "lecture001",
@@ -84,7 +86,7 @@
             "entityAnimation": "fadeIn"
           }
         ],
-        "notes": ""
+        "notes": []
       },
       {
         "lectureID": "lecture001",
@@ -117,7 +119,7 @@
             "entityAnimation": "fadeIn"
           }
         ],
-        "notes": ""
+        "notes": []
       },
       {
         "lectureID": "lecture001",
@@ -150,7 +152,7 @@
             "entityAnimation": "fadeIn"
           }
         ],
-        "notes": ""
+        "notes": []
       },
       {
         "lectureID": "lecture001",
@@ -183,7 +185,7 @@
             "entityAnimation": "fadeIn"
           }
         ],
-        "notes": ""
+        "notes": []
       },
       {
         "lectureID": "lecture001",
@@ -216,7 +218,7 @@
             "entityAnimation": "fadeIn"
           }
         ],
-        "notes": ""
+        "notes": []
       },
       {
         "lectureID": "lecture001",
@@ -249,7 +251,7 @@
             "entityAnimation": "fadeIn"
           }
         ],
-        "notes": ""
+        "notes": []
       },
       {
         "lectureID": "lecture001",
@@ -282,7 +284,7 @@
             "entityAnimation": "fadeIn"
           }
         ],
-        "notes": ""
+        "notes": []
       },
       {
         "lectureID": "lecture001",
@@ -315,7 +317,7 @@
             "entityAnimation": "fadeIn"
           }
         ],
-        "notes": ""
+        "notes": []
       },
       {
         "lectureID": "lecture001",
@@ -348,7 +350,7 @@
             "entityAnimation": "fadeIn"
           }
         ],
-        "notes": ""
+        "notes": []
       }
     ]
   }

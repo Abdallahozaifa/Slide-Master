@@ -44,7 +44,7 @@
             "entityAnimation": "none",
             "entityWidth": 50
         }],
-        "notes": ""
+        "notes": []
     }, {
         "lectureID": "lecture001",
         "pageID": "2",
@@ -73,7 +73,7 @@
             "entityContent": "By filling in the text box below, and they will be automatically saved!",
             "entityAnimation": "fadeIn"
         }],
-        "notes": ""
+        "notes": []
     }, {
         "lectureID": "lecture001",
         "pageID": "3",
@@ -102,7 +102,7 @@
             "entityContent": "Graphics API",
             "entityAnimation": "fadeIn"
         }],
-        "notes": ""
+        "notes": []
     }, {
         "lectureID": "lecture001",
         "pageID": "4",
@@ -131,7 +131,7 @@
             "entityContent": "Graphics API",
             "entityAnimation": "fadeIn"
         }],
-        "notes": ""
+        "notes": []
     }, {
         "lectureID": "lecture001",
         "pageID": "5",
@@ -160,7 +160,7 @@
             "entityContent": "Graphics API",
             "entityAnimation": "fadeIn"
         }],
-        "notes": ""
+        "notes": []
     }, {
         "lectureID": "lecture001",
         "pageID": "6",
@@ -189,7 +189,7 @@
             "entityContent": "Graphics API",
             "entityAnimation": "fadeIn"
         }],
-        "notes": ""
+        "notes": []
     }, {
         "lectureID": "lecture001",
         "pageID": "7",
@@ -218,7 +218,7 @@
             "entityContent": "Graphics API",
             "entityAnimation": "fadeIn"
         }],
-        "notes": ""
+        "notes": []
     }, {
         "lectureID": "lecture001",
         "pageID": "8",
@@ -247,7 +247,7 @@
             "entityContent": "Graphics API",
             "entityAnimation": "fadeIn"
         }],
-        "notes": ""
+        "notes": []
     }, {
         "lectureID": "lecture001",
         "pageID": "9",
@@ -276,7 +276,7 @@
             "entityContent": "Graphics API",
             "entityAnimation": "fadeIn"
         }],
-        "notes": ""
+        "notes": []
     }, {
         "lectureID": "lecture001",
         "pageID": "10",
@@ -305,6 +305,6 @@
             "entityContent": "Graphics API",
             "entityAnimation": "fadeIn"
         }],
-        "notes": ""
+        "notes": []
     }]
 }

@@ -10,22 +10,7 @@ $(document).ready(function() {
         View.checkContents();
         slideController.clearSlideFrame();
         /*Opens presentation file from /resources/xxx.json*/
-        $.get("/loadLecture", function(lecture) {
-            /* Initializes the lecture object with the data that is sent back from the server */
-            slideController.lecture = lecture;
-
-            /* Creates the first slide */
-            View.createSlide(lecture, 0);
-
-            /* Obtains the note area from the previous notes */
-            slideController.getNoteArea().html(slideController.lecture.pages[0].notes);
-
-            /* Registers the Add Notes button handler */
-            View.addNoteBtnHandler();
-
-            /* Registers the clear notes button handler */
-            View.clearNoteButtonHandler();
-        });
+        slideController.loadInitLec();
 
         /* Turns ON the slide show */
         slideController.SLIDESHOW_ON = true;
@@ -33,11 +18,8 @@ $(document).ready(function() {
         /* Changes the background color */
         slideController.getSlideFrame().css("background-color", "grey");
 
-        /* Enables the Add note button */
-        slideController.getAddNoteBtn().prop('disabled', false);
-
-        /* Enables the clear note button */
-        slideController.getClearNoteBtn().prop('disabled', false);
+        //Enables all buttons in the note input area
+        slideController.enableNoteButtons();
 
         View.hidePlayIcon();
         View.showStopIcon();
@@ -47,13 +29,12 @@ $(document).ready(function() {
     $(slideController.stop).click(function() {
         View.checkContents();
         if (slideController.SLIDESHOW_ON) {
-            slideController.SLIDESHOW_ON = false;
-            slideController.slide = null;
-            View.changeHeaderInfo(null, null);
-            slideController.getAddNoteBtn().prop('disabled', true);
-            slideController.getClearNoteBtn().prop('disabled', true);
-            View.hideStopIcon();
-            View.showPlayIcon();
+            slideController.SLIDESHOW_ON = false;   //Disable the slide show being active
+            slideController.slide = null;           //Remove the lecture object within our instance of slideController
+            View.changeHeaderInfo(null, null);      //Resets the lecture title and slide number above the player area
+            slideController.disableNoteButtons();   //Disables the buttons in the note input area
+            View.hideStopIcon();    //Remove the stop button from view
+            View.showPlayIcon();    //Replace stop button with play button
         }
         slideController.clearSlideFrame();
     });
@@ -64,6 +45,7 @@ $(document).ready(function() {
         slideController.clearSlideFrame();
         if (slideController.SLIDESHOW_ON) {
             View.changeSlide("prev");
+            slideController.clearNoteDisplay();
             slideController.loadNotes();
         }
     });
@@ -74,6 +56,7 @@ $(document).ready(function() {
         slideController.clearSlideFrame();
         if (slideController.SLIDESHOW_ON) {
             View.changeSlide("next");
+            slideController.clearNoteDisplay();
             slideController.loadNotes();
         }
     });

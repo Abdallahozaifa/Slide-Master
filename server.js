@@ -30,7 +30,7 @@ store.add(lecture, function(err) {
 });
 
 /* Main Page for Slide Master */
-app.get('/SlideMaster', function(req, res) {
+app.get('/', function(req, res) {
 
     /* Sends the index html page to the user */
     fs.readFile('index.html', 'utf8', function(err, data) {
@@ -87,5 +87,5 @@ app.post('/saveNote', function(req, res) {
 
 /* Listens on the cloud9 Port */
 app.listen(process.env.PORT, function() {
-    console.log('App listening at https://slide-master-abdallahozaifa.c9users.io/SlideMaster');
+    console.log('App listening at https://slide-master-abdallahozaifa.c9users.io');
 });
