@@ -131,6 +131,8 @@ var slideController = {
      /* Sending the newly update lecture object back to the server */
      saveNotes: function(lecture) {
           var _this = this;
+          var currentSlideNum = _this.curSlideNum;
+          lecture.currentSlideNum = currentSlideNum;
           $.ajax({
                url: "/saveNote",
                type: "POST",
@@ -138,7 +140,8 @@ var slideController = {
                contentType: "application/json",
                complete: function(res) {
                     _this.debugOut(res);
-               }
+               },
+               dataType: 'json'
           });
      },
 

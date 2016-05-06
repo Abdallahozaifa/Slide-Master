@@ -1,164 +1,178 @@
 {
+  "id": "lectureData",
+  "data": {
     "lectureID": "lecture001",
     "lectureTitle": "Graphics",
     "courseTitle": "Net-Centric-Web-Application",
-    "currentSlideNum": "0",
-    "pages": [{
+    "currentSlideNum": 0,
+    "pages": [
+      {
         "lectureID": "lecture001",
         "pageID": "1",
         "background": "color",
         "backgroundcolor": "white",
         "pageSequence": "notdefined",
         "pageAudioURL": "undefined",
-        "entities": [{
+        "entities": [
+          {
             "lectureID": "lecture001",
             "pageID": "1",
             "entityID": "lecture001-1-01",
             "entityType": "header",
             "entityLocation": {
-                "x": 50,
-                "y": 5
+              "x": 50,
+              "y": 5
             },
             "entityContent": "SlideMaster Slide Player",
             "entityAnimation": "none"
-        },{
+          },
+          {
             "lectureID": "lecture001",
             "pageID": "1",
             "entityID": "lecture001-1-01",
             "entityType": "text",
             "entityLocation": {
-                "x": 5,
-                "y": 18
+              "x": 5,
+              "y": 18
             },
             "entityContent": "This is our slide player. It uses NodeJS, and other stuff",
             "entityAnimation": "none"
-        }, {
+          },
+          {
             "lectureID": "lecture001",
             "pageID": "1",
             "entityID": "lecture001-1-03",
             "entityType": "image",
             "entityLocation": {
-                "x": 50,
-                "y": 30
+              "x": 50,
+              "y": 30
             },
             "entityContent": "http://www.keenthemes.com/preview/metronic/theme/assets/global/plugins/jcrop/demos/demo_files/image1.jpg",
             "entityAnimation": "none",
             "entityWidth": 50
-        }],
+          }
+        ],
         "notes": []
-    }, {
+      },
+      {
         "lectureID": "lecture001",
         "pageID": "2",
         "pageSequence": "notdefined",
         "pageAudioURL": "http://soundjax.com/reddo/39239%5EHORSE0.mp3",
-        "entities": [{
+        "entities": [
+          {
             "lectureID": "lecture001",
             "pageID": "2",
             "entityID": "lecture001-2-01",
             "entityType": "header",
             "entityLocation": {
-                "x": 20,
-                "y": 5
+              "x": 20,
+              "y": 5
             },
             "entityContent": "You can take notes!",
             "entityAnimation": "fadeIn"
-        }, {
+          },
+          {
             "lectureID": "lecture001",
             "pageID": "2",
             "entityID": "lecture001-2-02",
             "entityType": "text",
             "entityLocation": {
-                "x": 10,
-                "y": 18
+              "x": 10,
+              "y": 18
             },
             "entityContent": "By filling in the text box below, and they will be automatically saved!",
             "entityAnimation": "fadeIn"
-        }, 
-
-            {
-              "lectureID": "lecture001",
-              "pageID": "2",
-              "entityID": "lecture001-2-02",
-              "entityType": "text",
-              "entityLocation": {
-                "x": 20,
-                "y": 54
-              },
-              "entityContent": "or FULLSCREEN.",
-              "entityAnimation": "fadeIn",
-              "textFormat": "lighter"
+          },
+          {
+            "lectureID": "lecture001",
+            "pageID": "2",
+            "entityID": "lecture001-2-02",
+            "entityType": "text",
+            "entityLocation": {
+              "x": 20,
+              "y": 54
             },
-            {
-              "lectureID": "lecture001",
-              "pageID": "2",
-              "entityID": "lecture001-2-03",
-              "entityType": "text",
-              "entityLocation": {
-                "x": 19,
-                "y": 50
-              },
-              "entityContent": "Also, try clicking the sound button!",
-              "entityAnimation": "fadeIn",
-              "textFormat": "bold"
+            "entityContent": "or FULLSCREEN.",
+            "entityAnimation": "fadeIn",
+            "textFormat": "lighter"
+          },
+          {
+            "lectureID": "lecture001",
+            "pageID": "2",
+            "entityID": "lecture001-2-03",
+            "entityType": "text",
+            "entityLocation": {
+              "x": 19,
+              "y": 50
             },
-            {
-              "lectureID": "lecture001",
-              "pageID": "2",
-              "entityID": "lecture001-2-04",
-              "entityType": "image",
-              "entityLocation": {
-                "x": 9,
-                "y": 50
-              },
-              "entityContent": "http://www.clker.com/cliparts/r/5/b/k/D/E/left-point-hi.png",
-              "entityAnimation": "fadeIn",
-              "entityWidth": 15
-            }],
+            "entityContent": "Also, try clicking the sound button!",
+            "entityAnimation": "fadeIn",
+            "textFormat": "bold"
+          },
+          {
+            "lectureID": "lecture001",
+            "pageID": "2",
+            "entityID": "lecture001-2-04",
+            "entityType": "image",
+            "entityLocation": {
+              "x": 9,
+              "y": 50
+            },
+            "entityContent": "http://www.clker.com/cliparts/r/5/b/k/D/E/left-point-hi.png",
+            "entityAnimation": "fadeIn",
+            "entityWidth": 15
+          }
+        ],
         "notes": []
-    }, {
+      },
+      {
         "lectureID": "lecture001",
         "pageID": "3",
         "pageSequence": "notdefined",
         "pageAudioURL": "undefined",
-        "entities": [{
+        "entities": [
+          {
             "lectureID": "lecture001",
             "pageID": "3",
             "entityID": "lecture001-2-01",
             "entityType": "header",
             "entityLocation": {
-                "x": 25,
-                "y": 2
+              "x": 25,
+              "y": 2
             },
             "entityContent": "You can add all the content you want!",
             "entityAnimation": "fadeIn"
-        }, {
+          },
+          {
             "lectureID": "lecture001",
             "pageID": "3",
             "entityID": "lecture001-2-02",
             "entityType": "image",
             "entityLocation": {
-                "x": 50,
-                "y": 15
+              "x": 50,
+              "y": 15
             },
             "entityContent": "http://www.w3schools.com/css/img_fjords.jpg",
             "entityAnimation": "fadeIn",
             "entityWidth": 100
-            
-        }, 
-        {
+          },
+          {
             "lectureID": "lecture001",
             "pageID": "3",
             "entityID": "lecture001-2-02",
             "entityType": "image",
             "entityLocation": {
-                "x": 50,
-                "y": 58
+              "x": 50,
+              "y": 58
             },
             "entityContent": "http://media.gettyimages.com/photos/digital-composite-image-of-human-eye-picture-id550091273",
             "entityAnimation": "fadeIn",
             "entityWidth": 66
-            
-        }],
+          }
+        ],
         "notes": []
-    }]
+      }
+    ]
+  }
 }

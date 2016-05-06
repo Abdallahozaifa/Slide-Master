@@ -42,7 +42,7 @@ app.get('/', function(req, res) {
     });
 });
 
-app.get('/demo', function(req,res) {
+app.get('/demo', function(req, res) {
     fs.readFile('slidemaster.html', 'utf8', function(err, data) {
         if (!err) res.send(data);
         else return console.log(err);
@@ -68,32 +68,38 @@ app.get('/loadLecture', function(req, res) {
 
 /* Saves the lecture object */
 app.post('/saveNote', function(req, res) {
-    /* Removing the previous lecture data */
-    store.remove('lectureData', function(err) {
-        if (err) console.log(err); // err if the file removal failed 
+    /* The old lecture object */
+    var oldLec = JSON.parse(JSON.stringify(req.body));
+    
+    /* Loads the previous lecture object */
+    store.load('lectureData', function(err, objects) {
+        if (err) throw err; // err if JSON parsing failed 
+        
+        /* Grabs the necessary components */
+        var slideNum = oldLec.currentSlideNum;
+        var noteLen = oldLec.pages[slideNum].notes.length;
+        var notesArr = oldLec.pages[slideNum].notes;
+        var newNotes = notesArr[noteLen - 1];
+        lecture.data.pages[slideNum].notes.push(newNotes);
+        
+        /** Updates the lecture object */
+        lecture.data = oldLec;
+
+        /* Adds it back to the store */
+        store.add(lecture, function(err){
+            if (err) console.log(err); // err if the save failed
+        });
     });
 
-    /* Creating a new lecture object for the data store */
-    var lecture = {
-        id: "lectureData",
-        data: req.body
-    };
-
-    /* Adding the new lecture data to the store */
-    store.add(lecture, function(err) {
-        if (err) console.log(err); // err if the save failed
-    });
-
-    // console.log(newLecObj);
+    /* Sends success message */
     res.send("Saved Successfully!");
 });
 
 
 /* Listens on the Server Port */
 var server = app.listen(process.env.PORT || '8080', '0.0.0.0', function() {
-  console.log('App listening at http://%s:%s', server.address().address,
-    server.address().port);
-  console.log('Press Ctrl+C to quit.');
+    console.log('App listening at http://%s:%s', server.address().address,
+        server.address().port);
+    console.log('Press Ctrl+C to quit.');
 });
 // [END app]
-
