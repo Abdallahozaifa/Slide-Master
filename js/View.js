@@ -192,11 +192,6 @@ var View = {
      
      //Registers the event handler for the edit button in the note input area
      editNoteBtnHandler: function() {
-          //Get the edit and done buttons
-          var editNoteButton = slideController.getEditNoteBtn();
-          var doneNoteButton = slideController.getDoneNoteBtn();
-          
-          
           editNoteButton.click(function(){
                //other buttons are disabled
                slideController.getAddNoteBtn().prop('disabled', true);
@@ -207,12 +202,16 @@ var View = {
                doneNoteButton.prop('hidden', false);
                
                //Prepend a checkbox before each element -- these boxes are grouped
-               slideController.getNoteElements().each(function(i, val){    
-                    //Create a checkbox 
-                    $('<input />', {
-                         type: 'checkbox',
-                         id: i})             //Assign the id attribute its index in relation to all other checkboxes
-                         .prependTo($(val));
+               slideController.getNoteElements().each(function(i, val){
+                   console.log($("#" + i));
+                    if($("#" + i).length == 0){
+                        //Create a checkbox
+                        $('<input />', {
+                             type: 'checkbox',
+                             id: i})             //Assign the id attribute its index in relation to all other checkboxes
+                             .insertBefore($(val));
+                    }
+                    
                });
           });
      },

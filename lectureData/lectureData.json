@@ -52,7 +52,9 @@
             "entityWidth": 50
           }
         ],
-        "notes": []
+        "notes": [
+          "asd"
+        ]
       },
       {
         "lectureID": "lecture001",
