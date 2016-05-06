@@ -10,7 +10,7 @@ var slideController = {
      lecture: null, // lecture object that contains all the slides
      curSlideNum: 0, // current slide number that represents the current slide
      SLIDEMIN: 0, // minimum slide number constant 
-     SLIDEMAX: 10, // maximum slide number constant
+     SLIDEMAX: 3, // maximum slide number constant
      SLIDESHOW_ON: false, // whether the slide show is on or not
      debugModeOn: true, // weather debug mode is on or off
 
@@ -18,6 +18,7 @@ var slideController = {
      courseTitle: $("#course-title"),
      lecTitle: $("#lecture-title"),
      slideNumber: $("#slide-number"),
+     playerIframe: $("#slideMaster"),
 
      /* Icons for the web slide player */
      play: $("#play-icon"),
@@ -182,5 +183,32 @@ var slideController = {
                },
                async: false
           });
+     },
+     
+     /* Toggles the full screen mode */
+     toggleFullScreen: function() {
+          if ((document.fullScreenElement && document.fullScreenElement !== null) ||
+               (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+               if (document.documentElement.requestFullScreen) {
+                    document.documentElement.requestFullScreen();
+               }
+               else if (document.documentElement.mozRequestFullScreen) {
+                    document.documentElement.mozRequestFullScreen();
+               }
+               else if (document.documentElement.webkitRequestFullScreen) {
+                    document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+               }
+          }
+          else {
+               if (document.cancelFullScreen) {
+                    document.cancelFullScreen();
+               }
+               else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+               }
+               else if (document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen();
+               }
+          }
      }
 };

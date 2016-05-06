@@ -128,6 +128,9 @@ var View = {
                     elt.css("position", "fixed");
                     elt.css("top", entity.entityLocation.y + "%");
                     elt.css("left", entity.entityLocation.x + "%");
+                    if (entity.textFormat != undefined) {
+                         elt.css("font-weight", entity.textFormat);
+                    }
                }
                else if (entity.entityType == "image") {
                     elt = $("<img></img>").attr('src', entity.entityContent);

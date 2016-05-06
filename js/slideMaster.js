@@ -81,10 +81,12 @@ $(document).ready(function() {
         }
     });
 
-    /* Saves the notes */
+    /*  */
     $(slideController.fullScreen).click(function() {
         if (slideController.SLIDESHOW_ON) {
-            slideController.saveNotes(slideController.lecture);
+            slideController.toggleFullScreen();
+            // console.log($("#lecture-title"));
+            // $(window).scrollTo("#lecture-title");
         }
     });
 
@@ -98,3 +100,5 @@ $(document).ready(function() {
         event.preventDefault();
     });
 });
+
+
