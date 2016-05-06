@@ -192,6 +192,8 @@ var View = {
      
      //Registers the event handler for the edit button in the note input area
      editNoteBtnHandler: function() {
+          var editNoteButton = slideController.getEditNoteBtn();
+          var doneNoteButton = slideController.getDoneNoteBtn();
           editNoteButton.click(function(){
                //other buttons are disabled
                slideController.getAddNoteBtn().prop('disabled', true);
