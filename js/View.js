@@ -209,7 +209,6 @@ var View = {
 
                //Prepend a checkbox before each element -- these boxes are grouped
                slideController.getNoteElements().each(function(i, val) {
-                    console.log($("#" + i));
                     if ($("#" + i).length == 0) {
                          //Create a checkbox
                          $('<input />', {
@@ -239,9 +238,7 @@ var View = {
 
                //Select all checkboxes that are checked
                var boxes = slideController.getNoteArea().find(":checked");
-
                var noteElements = slideController.getNoteElements(); //Select all <p> in note display area
-               var lecNotes = slideController.getLecNotes(); //Get the lecture note object from the JSON file
 
                //Delete all indices corresponding to the id of the checked boxes
                boxes.each(function(i, val) {
@@ -270,8 +267,7 @@ var View = {
           noteBtn.on("click", function() {
                var noteArea = slideController.getNoteArea();
                var usrNote = slideController.getNoteInput();
-               var lecNotes = slideController.lecture.pages[slideController.curSlideNum].notes;
-
+               
                /* Detect if the user has entered text in the input field */
                if (usrNote.val() != "") {
 

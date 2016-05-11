@@ -41,7 +41,7 @@
                 "x": 50,
                 "y": 30
             },
-            "entityContent": "http://www.keenthemes.com/preview/metronic/theme/assets/global/plugins/jcrop/demos/demo_files/image1.jpg",
+            "entityContent": "img/leaf.jpg",
             "entityAnimation": "none",
             "entityWidth": 50
         }],
@@ -110,7 +110,7 @@
                 "x": 9,
                 "y": 50
               },
-              "entityContent": "http://www.clker.com/cliparts/r/5/b/k/D/E/left-point-hi.png",
+              "entityContent": "../img/hand.png",
               "entityAnimation": "fadeIn",
               "entityWidth": 15
             }],
@@ -140,7 +140,7 @@
                 "x": 50,
                 "y": 15
             },
-            "entityContent": "http://www.w3schools.com/css/img_fjords.jpg",
+            "entityContent": "../img/valley.jpg",
             "entityAnimation": "fadeIn",
             "entityWidth": 100
             
@@ -154,7 +154,7 @@
                 "x": 50,
                 "y": 58
             },
-            "entityContent": "http://media.gettyimages.com/photos/digital-composite-image-of-human-eye-picture-id550091273",
+            "entityContent": "../img/eye.jpg",
             "entityAnimation": "fadeIn",
             "entityWidth": 66
             

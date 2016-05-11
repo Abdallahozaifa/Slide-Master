@@ -12,7 +12,7 @@ var slideController = {
      SLIDEMIN: 0, // minimum slide number constant 
      SLIDEMAX: 3, // maximum slide number constant
      SLIDESHOW_ON: false, // whether the slide show is on or not
-     debugModeOn: true, // weather debug mode is on or off
+     debugModeOn: false, // weather debug mode is on or off
 
      /* Selectors for the course title, lecture title, and current slide number*/
      courseTitle: $("#course-title"),
@@ -43,33 +43,33 @@ var slideController = {
 
      /* Grabs the note input textfield in the second iframe */
      getNoteInput: function() {
-          return $("body > div:nth-child(3) > div > div > ul > li.notes-area > textarea");
+          return $("#user-input");
      },
-     //Returns all buttons in the note input area
+     /* Returns all buttons in the note input area */
      getNoteButtons: function() {
-          return $("body > div:nth-child(3) > div > div > ul > li:nth-child(2) > input[type='submit']");
+          return $(".slide-button");
      },
 
      /* Grabs the add button next to the input field in the second iframe */
      getAddNoteBtn: function() {
-          return $("body > div:nth-child(3) > div > div > ul > li:nth-child(2) > input[type='submit']#addNote");
+          return $("#addNote");
      },
 
      /* Gets the clear button in the note input area*/
      getClearNoteBtn: function() {
-          return $("body > div:nth-child(3) > div > div > ul > li:nth-child(2) > input[type='submit']#clearNote");
+          return $("#clearNote");
      },
      /* Gets the edit button in the note input area*/
      getEditNoteBtn: function() {
-          return $("body > div:nth-child(3) > div > div > ul > li:nth-child(2) > input[type='submit']#editNote");
+          return $("#editNote");
      },
      /* Gets the done button in the note input area*/
      getDoneNoteBtn: function() {
-          return $("body > div:nth-child(3) > div > div > ul > li:nth-child(2) > input[type='submit']#doneNote");
+          return $("#doneNote");
      },
      /* Grabs the note area that displays the notes in the third iframe */
      getNoteArea: function() {
-          return $("body > div.row-fluid > div.col-md-3.notes > div > ul > li.notes-display > div");
+          return $(".notes-shown");
      },
 
      //Gets the note variable from the lecture object
@@ -81,7 +81,7 @@ var slideController = {
      getNoteElements: function() {
           return slideController.getNoteArea().find("p");
      },
-     //Returns the set of checkboxes next to each note element
+     /* Returns the set of checkboxes next to each note element */
      getDeleteCheckBoxes: function() {
           return slideController.getNoteArea().find(":checkbox");
      },
@@ -119,7 +119,6 @@ var slideController = {
           var _this = this;
           $.get("/loadLecture", function(lecture) {
                _this.lecture = lecture;
-               var noteArea = _this.getNoteArea();
                var curSlide = _this.curSlideNum;
                var notes = _this.lecture.pages[curSlide].notes;
                $(notes).each(function(i, val) {
