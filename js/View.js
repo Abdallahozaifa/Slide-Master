@@ -6,13 +6,17 @@ var View = {
      audioOn: false, // boolean value for the weather the audio is on or off
 
      playAudio: function() {
-          this.audioOn = true;
-          this.audioTag.play();
+          if (this.audioTag != null) {
+               this.audioOn = true;
+               this.audioTag.play();
+          }
      },
 
      pauseAudio: function() {
-          this.audioOn = false;
-          this.audioTag.pause();
+          if (this.audioTag != null) {
+               this.audioOn = false;
+               this.audioTag.pause();
+          }
      },
      /* hides the audio on icon*/
      hideAudioOnIcon: function() {
@@ -33,8 +37,8 @@ var View = {
      showPlayIcon: function() {
           $(slideController.play).show();
      },
-     
-      /* hides the audio on icon*/
+
+     /* hides the audio on icon*/
      hidePlayIcon: function() {
           $(slideController.play).hide();
      },
@@ -170,9 +174,9 @@ var View = {
           (command == "next") && (slideController.curSlideNum > slideController.SLIDEMIN) ? slideController.curSlideNum--: null;
           View.createSlide(slideController.lecture, slideController.curSlideNum);
      },
-     
+
      //Adds button handlers to the buttons in the note input area
-     initNoteBtnHandlers: function(){
+     initNoteBtnHandlers: function() {
           this.addNoteBtnHandler();
           this.editNoteBtnHandler();
           this.doneNoteBtnHandler();
@@ -189,70 +193,71 @@ var View = {
                slideController.saveNotes(slideController.lecture);
           });
      },
-     
+
      //Registers the event handler for the edit button in the note input area
      editNoteBtnHandler: function() {
           var editNoteButton = slideController.getEditNoteBtn();
           var doneNoteButton = slideController.getDoneNoteBtn();
-          editNoteButton.click(function(){
+          editNoteButton.click(function() {
                //other buttons are disabled
                slideController.getAddNoteBtn().prop('disabled', true);
                slideController.getClearNoteBtn().prop('disabled', true);
-               
+
                //Edit button is replaced by the done button
                editNoteButton.prop('hidden', true);
                doneNoteButton.prop('hidden', false);
-               
+
                //Prepend a checkbox before each element -- these boxes are grouped
-               slideController.getNoteElements().each(function(i, val){
-                   console.log($("#" + i));
-                    if($("#" + i).length == 0){
-                        //Create a checkbox
-                        $('<input />', {
-                             type: 'checkbox',
-                             id: i})             //Assign the id attribute its index in relation to all other checkboxes
-                             .insertBefore($(val));
+               slideController.getNoteElements().each(function(i, val) {
+                    console.log($("#" + i));
+                    if ($("#" + i).length == 0) {
+                         //Create a checkbox
+                         $('<input />', {
+                                   type: 'checkbox',
+                                   id: i
+                              }) //Assign the id attribute its index in relation to all other checkboxes
+                              .insertBefore($(val));
                     }
-                    
+
                });
           });
      },
      //Registers the event handler for the done button in the note input area
-     doneNoteBtnHandler: function(){
+     doneNoteBtnHandler: function() {
           //Get the edit and done buttons
           var editNoteButton = slideController.getEditNoteBtn();
           var doneNoteButton = slideController.getDoneNoteBtn();
-          
-          doneNoteButton.click(function(){
+
+          doneNoteButton.click(function() {
                //Enable other buttons in the note input area
                slideController.getAddNoteBtn().prop('disabled', false);
-               slideController.getClearNoteBtn().prop('disabled', false);               
-               
+               slideController.getClearNoteBtn().prop('disabled', false);
+
                //Switch edit and done buttons so that edit is shown
                editNoteButton.prop('hidden', false);
                doneNoteButton.prop('hidden', true);
-               
+
                //Select all checkboxes that are checked
                var boxes = slideController.getNoteArea().find(":checked");
-               
-               var noteElements = slideController.getNoteElements();            //Select all <p> in note display area
-               var lecNotes = slideController.getLecNotes();                    //Get the lecture note object from the JSON file
-               
+
+               var noteElements = slideController.getNoteElements(); //Select all <p> in note display area
+               var lecNotes = slideController.getLecNotes(); //Get the lecture note object from the JSON file
+
                //Delete all indices corresponding to the id of the checked boxes
-               boxes.each(function(i, val){
+               boxes.each(function(i, val) {
                     var index = $(val).attr("id");
                     noteElements[index].remove();
-                    
+
                     //Remove the same index from the notes element in lecture object
-                    slideController.lecture.pages[slideController.curSlideNum].notes.splice(index, 1); 
+                    slideController.lecture.pages[slideController.curSlideNum].notes.splice(index, 1);
                });
-               
+
                //Update notes
                slideController.syncNotes();
                slideController.saveNotes(slideController.lecture);
-               
+
                //Remove all the checkboxes from beside the notes
-               slideController.getDeleteCheckBoxes().each(function(i, val){
+               slideController.getDeleteCheckBoxes().each(function(i, val) {
                     val.remove();
                });
           });

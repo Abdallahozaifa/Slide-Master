@@ -12,7 +12,7 @@
         "background": "color",
         "backgroundcolor": "white",
         "pageSequence": "notdefined",
-        "pageAudioURL": "undefined",
+        "pageAudioURL": "/resources/inspirio.mp3",
         "entities": [
           {
             "lectureID": "lecture001",

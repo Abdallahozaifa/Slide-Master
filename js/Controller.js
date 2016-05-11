@@ -1,4 +1,4 @@
-/* global $, View */
+/* global $, View, Element */
 /* Slide Controller that contains all the slide components neccessary to control the slide master */
 var slideController = {
 
