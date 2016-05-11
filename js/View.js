@@ -169,9 +169,9 @@ var View = {
      changeSlide: function(command) {
           if (View.audioTag != null)
                View.audioTag.pause(); // Pause audio tag to prevent it to keep on play and to leak memory
-
-          (command == "prev") && (slideController.curSlideNum < slideController.SLIDEMAX - 1) ? slideController.curSlideNum++: null;
-          (command == "next") && (slideController.curSlideNum > slideController.SLIDEMIN) ? slideController.curSlideNum--: null;
+          
+          (command == "next") && (slideController.curSlideNum < slideController.SLIDEMAX - 1) ? slideController.curSlideNum++: null;
+          (command == "prev") && (slideController.curSlideNum > slideController.SLIDEMIN) ? slideController.curSlideNum--: null;
           View.createSlide(slideController.lecture, slideController.curSlideNum);
      },
 
@@ -250,7 +250,7 @@ var View = {
                });
 
                //Update notes
-               slideController.syncNotes();
+               slideController.loadLec(false, slideController.syncNotes);
                slideController.saveNotes(slideController.lecture);
 
                //Remove all the checkboxes from beside the notes
@@ -275,7 +275,7 @@ var View = {
                     slideController.lecture.pages[slideController.curSlideNum].notes.push(usrNote.val());
 
                     /* Synchronizes the old lecture object with the new one */
-                    slideController.syncNotes();
+                    slideController.loadLec(false, slideController.syncNotes);
 
                     /* Updated lecture object that is sent over to the server */
                     var updatedLecObj = slideController.lecture;

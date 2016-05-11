@@ -10,8 +10,9 @@ $(document).ready(function() {
         View.checkContents();
         slideController.clearSlideFrame();
         /*Opens presentation file from /resources/xxx.json*/
-        slideController.loadInitLec();
-
+        // slideController.loadInitLec();
+        slideController.loadLec(false, slideController.startSlideShow);
+        
         /* Turns ON the slide show */
         slideController.SLIDESHOW_ON = true;
 
@@ -44,9 +45,10 @@ $(document).ready(function() {
         View.checkContents();
         slideController.clearSlideFrame();
         if (slideController.SLIDESHOW_ON) {
-            View.changeSlide("prev");
+            View.changeSlide("next");
             slideController.clearNoteDisplay();
-            slideController.loadNotes();
+            slideController.loadLec(true, slideController.appendNotes);
+
         }
     });
 
@@ -55,9 +57,9 @@ $(document).ready(function() {
         View.checkContents();
         slideController.clearSlideFrame();
         if (slideController.SLIDESHOW_ON) {
-            View.changeSlide("next");
+            View.changeSlide("prev");
             slideController.clearNoteDisplay();
-            slideController.loadNotes();
+            slideController.loadLec(true, slideController.appendNotes);
         }
     });
 

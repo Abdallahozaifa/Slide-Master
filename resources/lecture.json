@@ -41,7 +41,7 @@
                 "x": 50,
                 "y": 30
             },
-            "entityContent": "img/leaf.jpg",
+            "entityContent": "../../img/leaf.jpg",
             "entityAnimation": "none",
             "entityWidth": 50
         }],
@@ -50,7 +50,7 @@
         "lectureID": "lecture001",
         "pageID": "2",
         "pageSequence": "notdefined",
-        "pageAudioURL": "http://soundjax.com/reddo/39239%5EHORSE0.mp3",
+        "pageAudioURL": "../../horse.mp3",
         "entities": [{
             "lectureID": "lecture001",
             "pageID": "2",
@@ -110,7 +110,7 @@
                 "x": 9,
                 "y": 50
               },
-              "entityContent": "../img/hand.png",
+              "entityContent": "../../img/hand.png",
               "entityAnimation": "fadeIn",
               "entityWidth": 15
             }],
@@ -140,7 +140,7 @@
                 "x": 50,
                 "y": 15
             },
-            "entityContent": "../img/valley.jpg",
+            "entityContent": "../../img/valley.jpg",
             "entityAnimation": "fadeIn",
             "entityWidth": 100
             
@@ -154,7 +154,7 @@
                 "x": 50,
                 "y": 58
             },
-            "entityContent": "../img/eye.jpg",
+            "entityContent": "../../img/eye.jpg",
             "entityAnimation": "fadeIn",
             "entityWidth": 66
             

@@ -2,6 +2,7 @@
 /* Slide Controller that contains all the slide components neccessary to control the slide master */
 var slideController = {
 
+     _this: this,
      /* Slide Components */
      noteInput: null, //The text field users can add notes via
      addBtn: null, //Button pressed to append note input to notes
@@ -13,6 +14,7 @@ var slideController = {
      SLIDEMAX: 3, // maximum slide number constant
      SLIDESHOW_ON: false, // whether the slide show is on or not
      debugModeOn: false, // weather debug mode is on or off
+     lecture: null, // lecture object for the client side
 
      /* Selectors for the course title, lecture title, and current slide number*/
      courseTitle: $("#course-title"),
@@ -114,19 +116,6 @@ var slideController = {
           });
      },
 
-     /* Loads the notes and appends it to the notes section */
-     loadNotes: function() {
-          var _this = this;
-          $.get("/loadLecture", function(lecture) {
-               _this.lecture = lecture;
-               var curSlide = _this.curSlideNum;
-               var notes = _this.lecture.pages[curSlide].notes;
-               $(notes).each(function(i, val) {
-                    $("<p></p>").text(val).appendTo(slideController.getNoteArea());
-               });
-          });
-     },
-
      /* Sending the newly update lecture object back to the server */
      saveNotes: function(lecture) {
           var _this = this;
@@ -138,55 +127,60 @@ var slideController = {
                data: JSON.stringify(lecture),
                contentType: "application/json",
                complete: function(res) {
-                    _this.debugOut(res);
+                    // _this.debugOut(res);
                },
                dataType: 'json'
           });
      },
 
-     /* Synchronizes the old Lecture JSON object with the new one*/
-     syncNotes: function() {
-          var _this = this;
-          $.ajax({
-               url: "/loadLecture",
-               type: "GET",
-               success: function(lecture) {
-                    var oldLecNotes = lecture.pages[_this.curSlideNum].notes;
-                    var newLecNotes = _this.lecture.pages[_this.curSlideNum].notes;
-                    newLecNotes = newLecNotes.filter(function(val) {
-                         return oldLecNotes.indexOf(val) == -1;
-                    });
-                    //_thi
-               },
-               async: false
+     /* Synchronizes the old Lecture JSON object with the new one */
+     syncNotes: function(lecture) {
+          console.log(lecture);
+          var oldLecNotes = lecture.pages[slideController.curSlideNum].notes;
+          var newLecNotes = slideController.lecture.pages[slideController.curSlideNum].notes;
+          newLecNotes = newLecNotes.filter(function(val) {
+               return oldLecNotes.indexOf(val) == -1;
           });
      },
 
-     /* Loads the initial lecture object from the server */
-     loadInitLec: function() {
+     /* Starts the slide show by initially creating the first slide and initializing the client side lecture object */
+     startSlideShow: function(lecture) {
+          /* Initializes the lecture object with the data that is sent back from the server */
+          slideController.lecture = lecture;
+
+          /* Creates the first slide */
+          View.createSlide(lecture, 0);
+
+          /* Updates the note area to display notes for the first slide */
+          $(slideController.lecture.pages[0].notes).each(function(i, val) {
+               $("<p></p>").text(val).appendTo(slideController.getNoteArea());
+          });
+
+
+          /* Registers button handlers for buttons in the note input area */
+          View.initNoteBtnHandlers();
+     },
+
+     /* Append notes callback function that executes once the lecture object returns */
+     appendNotes: function(lecture) {
+          slideController.lecture = lecture;
+          var curSlide = slideController.curSlideNum;
+          var notes = slideController.lecture.pages[curSlide].notes;
+          $(notes).each(function(i, val) {
+               $("<p></p>").text(val).appendTo(slideController.getNoteArea());
+          });
+     },
+
+     /* A general function for loading the lecture object */
+     loadLec: function(asyncOpt, callback) {
           $.ajax({
                url: "/loadLecture",
                type: "GET",
-               success: function(lecture) {
-                    /* Initializes the lecture object with the data that is sent back from the server */
-                    slideController.lecture = lecture;
-
-                    /* Creates the first slide */
-                    View.createSlide(lecture, 0);
-
-                    /* Updates the note area to display notes for the first slide */
-                    $(slideController.lecture.pages[0].notes).each(function(i, val) {
-                         $("<p></p>").text(val).appendTo(slideController.getNoteArea());
-                    });
-
-
-                    /* Registers button handlers for buttons in the note input area */
-                    View.initNoteBtnHandlers();
-               },
-               async: false
+               success: callback,
+               async: asyncOpt
           });
      },
-     
+
      /* Toggles the full screen mode */
      toggleFullScreen: function() {
           if ((document.fullScreenElement && document.fullScreenElement !== null) ||
