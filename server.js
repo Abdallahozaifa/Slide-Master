@@ -59,7 +59,7 @@ app.get('/SlideMaster/slide', function(req, res) {
 
 /* Returns the lecture content to the client */
 app.get('/loadLecture', function(req, res) {
-    // res.send(lecture);
+    /* Retrieving the lecture object from the store */
     store.load('lectureData', function(err, lecture) {
         if (err) console.log(err); // err if JSON parsing failed
         res.send(lecture.data);

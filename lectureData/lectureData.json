@@ -4,7 +4,7 @@
     "lectureID": "lecture001",
     "lectureTitle": "Graphics",
     "courseTitle": "Net-Centric-Web-Application",
-    "currentSlideNum": 0,
+    "currentSlideNum": 2,
     "pages": [
       {
         "lectureID": "lecture001",
@@ -171,7 +171,9 @@
             "entityWidth": 66
           }
         ],
-        "notes": []
+        "notes": [
+          "cool"
+        ]
       }
     ]
   }

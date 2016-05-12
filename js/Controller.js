@@ -14,7 +14,11 @@ var slideController = {
      SLIDEMAX: 3, // maximum slide number constant
      SLIDESHOW_ON: false, // whether the slide show is on or not
      debugModeOn: false, // weather debug mode is on or off
-     lecture: null, // lecture object for the client side
+
+     /* client side cache for lecture object */
+     cache: {
+          lec: null
+     },
 
      /* Selectors for the course title, lecture title, and current slide number*/
      courseTitle: $("#course-title"),
@@ -127,7 +131,7 @@ var slideController = {
                data: JSON.stringify(lecture),
                contentType: "application/json",
                complete: function(res) {
-                    // _this.debugOut(res);
+                    // cache it here
                },
                dataType: 'json'
           });
@@ -135,7 +139,6 @@ var slideController = {
 
      /* Synchronizes the old Lecture JSON object with the new one */
      syncNotes: function(lecture) {
-          console.log(lecture);
           var oldLecNotes = lecture.pages[slideController.curSlideNum].notes;
           var newLecNotes = slideController.lecture.pages[slideController.curSlideNum].notes;
           newLecNotes = newLecNotes.filter(function(val) {
@@ -173,12 +176,16 @@ var slideController = {
 
      /* A general function for loading the lecture object */
      loadLec: function(asyncOpt, callback) {
-          $.ajax({
-               url: "/loadLecture",
-               type: "GET",
-               success: callback,
-               async: asyncOpt
-          });
+          if (!this.cache.lec) {
+               this.cache.lec =
+                    $.ajax({
+                         url: "/loadLecture",
+                         type: "GET",
+                         success: callback,
+                         async: asyncOpt
+                    }).promise();
+          }
+          this.cache.lec.done(callback);
      },
 
      /* Toggles the full screen mode */
