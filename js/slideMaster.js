@@ -9,8 +9,7 @@ $(document).ready(function() {
     $(slideController.play).click(function() {
         View.checkContents();
         slideController.clearSlideFrame();
-        /*Opens presentation file from /resources/xxx.json*/
-        // slideController.loadInitLec();
+        /* Opens presentation file from /resources/xxx.json*/
         slideController.loadLec(false, slideController.startSlideShow);
         
         /* Turns ON the slide show */
@@ -32,6 +31,7 @@ $(document).ready(function() {
         if (slideController.SLIDESHOW_ON) {
             slideController.SLIDESHOW_ON = false;   //Disable the slide show being active
             slideController.slide = null;           //Remove the lecture object within our instance of slideController
+            slideController.cache.lec = null; // empties the cache
             View.changeHeaderInfo(null, null);      //Resets the lecture title and slide number above the player area
             slideController.disableNoteButtons();   //Disables the buttons in the note input area
             View.hideStopIcon();    //Remove the stop button from view

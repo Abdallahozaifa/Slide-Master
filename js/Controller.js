@@ -135,6 +135,7 @@ var slideController = {
                },
                dataType: 'json'
           });
+          // $.post('/songs', { 'id': id }).promise();
      },
 
      /* Synchronizes the old Lecture JSON object with the new one */
@@ -150,7 +151,7 @@ var slideController = {
      startSlideShow: function(lecture) {
           /* Initializes the lecture object with the data that is sent back from the server */
           slideController.lecture = lecture;
-
+          console.log(lecture);
           /* Creates the first slide */
           View.createSlide(lecture, 0);
 
@@ -177,11 +178,11 @@ var slideController = {
      /* A general function for loading the lecture object */
      loadLec: function(asyncOpt, callback) {
           if (!this.cache.lec) {
+               console.log("whats up!");
                this.cache.lec =
                     $.ajax({
                          url: "/loadLecture",
                          type: "GET",
-                         success: callback,
                          async: asyncOpt
                     }).promise();
           }
