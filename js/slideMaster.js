@@ -99,12 +99,10 @@ $(document).ready(function() {
         }
     });
 
-    /*  */
+    /* Turns the mode into fullscreen */
     $(slideController.fullScreen).click(function() {
         if (slideController.SLIDESHOW_ON) {
             slideController.toggleFullScreen();
-            // console.log($("#lecture-title"));
-            // $(window).scrollTo("#lecture-title");
         }
     });
 

@@ -5,6 +5,7 @@ var View = {
      audioTag: null, // element that will hold the audio to be played
      audioOn: false, // boolean value for the weather the audio is on or off
 
+     /* starts the audio*/
      playAudio: function() {
           if (this.audioTag != null) {
                this.audioOn = true;
@@ -12,6 +13,7 @@ var View = {
           }
      },
 
+     /* pauses the audio*/
      pauseAudio: function() {
           if (this.audioTag != null) {
                this.audioOn = false;
@@ -108,7 +110,10 @@ var View = {
           if (lecObj.pages[slideNum].background == "color") {
                $(slideController.getSlideFrame()).css("background-color", lecObj.pages[slideNum].backgroundcolor);
           }
-
+          
+          var slideBody = $($("iframe")[0]).contents().find("body");
+          slideBody.css("background-image", "url(" + lecObj.pages[slideNum]["background-image"] + ")");
+          
           var entities = lecObj.pages[slideNum].entities; //Extract and iterate through entities
 
           View.createAudioTag(lecObj, slideNum); // creates the audio tag object
@@ -144,6 +149,7 @@ var View = {
                     elt.css("left", leftPos);
                     elt.css("top", entity.entityLocation.y + "%");
                     elt.css("width", entity.entityWidth + "%");
+                    elt.css("border-radius", "10px");
                }
 
                $(slideController.getSlideFrame()).append(elt); //Append the element
@@ -169,9 +175,14 @@ var View = {
      changeSlide: function(command) {
           if (View.audioTag != null)
                View.audioTag.pause(); // Pause audio tag to prevent it to keep on play and to leak memory
-          
+
+          /* Checks wether the command is next and increases the current slide number */
           (command == "next") && (slideController.curSlideNum < slideController.SLIDEMAX - 1) ? slideController.curSlideNum++: null;
+
+          /* Checks wether the command is prev and decreases the current slide number */
           (command == "prev") && (slideController.curSlideNum > slideController.SLIDEMIN) ? slideController.curSlideNum--: null;
+
+          /* Creates the slide based on the slide number and uses the lecture object */
           View.createSlide(slideController.lecture, slideController.curSlideNum);
      },
 
@@ -267,7 +278,7 @@ var View = {
           noteBtn.on("click", function() {
                var noteArea = slideController.getNoteArea();
                var usrNote = slideController.getNoteInput();
-               
+
                /* Detect if the user has entered text in the input field */
                if (usrNote.val() != "") {
 

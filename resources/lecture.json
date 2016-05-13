@@ -10,6 +10,7 @@
         "backgroundcolor": "white",
         "pageSequence": "notdefined",
         "pageAudioURL": "/resources/inspirio.mp3",
+        "background-image": "../../img/staples-bg.jpg",
         "entities": [{
             "lectureID": "lecture001",
             "pageID": "1",
@@ -17,18 +18,18 @@
             "entityType": "header",
             "entityLocation": {
                 "x": 50,
-                "y": 5
+                "y": 15
             },
             "entityContent": "SlideMaster Slide Player",
             "entityAnimation": "none"
-        },{
+        }, {
             "lectureID": "lecture001",
             "pageID": "1",
             "entityID": "lecture001-1-01",
             "entityType": "text",
             "entityLocation": {
-                "x": 5,
-                "y": 18
+                "x": 20,
+                "y": 28
             },
             "entityContent": "This is our slide player. It uses NodeJS, and other stuff",
             "entityAnimation": "none"
@@ -39,7 +40,7 @@
             "entityType": "image",
             "entityLocation": {
                 "x": 50,
-                "y": 30
+                "y": 42
             },
             "entityContent": "../../img/leaf.jpg",
             "entityAnimation": "none",
@@ -51,75 +52,76 @@
         "pageID": "2",
         "pageSequence": "notdefined",
         "pageAudioURL": "../../horse.mp3",
+        "background-image": "",
         "entities": [{
-            "lectureID": "lecture001",
-            "pageID": "2",
-            "entityID": "lecture001-2-01",
-            "entityType": "header",
-            "entityLocation": {
-                "x": 20,
-                "y": 5
+                "lectureID": "lecture001",
+                "pageID": "2",
+                "entityID": "lecture001-2-01",
+                "entityType": "header",
+                "entityLocation": {
+                    "x": 20,
+                    "y": 5
+                },
+                "entityContent": "You can take notes!",
+                "entityAnimation": "fadeIn"
+            }, {
+                "lectureID": "lecture001",
+                "pageID": "2",
+                "entityID": "lecture001-2-02",
+                "entityType": "text",
+                "entityLocation": {
+                    "x": 10,
+                    "y": 18
+                },
+                "entityContent": "By filling in the text box below, and they will be automatically saved!",
+                "entityAnimation": "fadeIn"
             },
-            "entityContent": "You can take notes!",
-            "entityAnimation": "fadeIn"
-        }, {
-            "lectureID": "lecture001",
-            "pageID": "2",
-            "entityID": "lecture001-2-02",
-            "entityType": "text",
-            "entityLocation": {
-                "x": 10,
-                "y": 18
-            },
-            "entityContent": "By filling in the text box below, and they will be automatically saved!",
-            "entityAnimation": "fadeIn"
-        }, 
 
             {
-              "lectureID": "lecture001",
-              "pageID": "2",
-              "entityID": "lecture001-2-02",
-              "entityType": "text",
-              "entityLocation": {
-                "x": 20,
-                "y": 54
-              },
-              "entityContent": "or FULLSCREEN.",
-              "entityAnimation": "fadeIn",
-              "textFormat": "lighter"
-            },
-            {
-              "lectureID": "lecture001",
-              "pageID": "2",
-              "entityID": "lecture001-2-03",
-              "entityType": "text",
-              "entityLocation": {
-                "x": 19,
-                "y": 50
-              },
-              "entityContent": "Also, try clicking the sound button!",
-              "entityAnimation": "fadeIn",
-              "textFormat": "bold"
-            },
-            {
-              "lectureID": "lecture001",
-              "pageID": "2",
-              "entityID": "lecture001-2-04",
-              "entityType": "image",
-              "entityLocation": {
-                "x": 9,
-                "y": 50
-              },
-              "entityContent": "../../img/hand.png",
-              "entityAnimation": "fadeIn",
-              "entityWidth": 15
-            }],
+                "lectureID": "lecture001",
+                "pageID": "2",
+                "entityID": "lecture001-2-02",
+                "entityType": "text",
+                "entityLocation": {
+                    "x": 20,
+                    "y": 54
+                },
+                "entityContent": "or FULLSCREEN.",
+                "entityAnimation": "fadeIn",
+                "textFormat": "lighter"
+            }, {
+                "lectureID": "lecture001",
+                "pageID": "2",
+                "entityID": "lecture001-2-03",
+                "entityType": "text",
+                "entityLocation": {
+                    "x": 19,
+                    "y": 50
+                },
+                "entityContent": "Also, try clicking the sound button!",
+                "entityAnimation": "fadeIn",
+                "textFormat": "bold"
+            }, {
+                "lectureID": "lecture001",
+                "pageID": "2",
+                "entityID": "lecture001-2-04",
+                "entityType": "image",
+                "entityLocation": {
+                    "x": 9,
+                    "y": 50
+                },
+                "entityContent": "../../img/hand.png",
+                "entityAnimation": "fadeIn",
+                "entityWidth": 15
+            }
+        ],
         "notes": []
     }, {
         "lectureID": "lecture001",
         "pageID": "3",
         "pageSequence": "notdefined",
         "pageAudioURL": "undefined",
+        "background-image": "",
         "entities": [{
             "lectureID": "lecture001",
             "pageID": "3",
@@ -143,9 +145,8 @@
             "entityContent": "../../img/valley.jpg",
             "entityAnimation": "fadeIn",
             "entityWidth": 100
-            
-        }, 
-        {
+
+        }, {
             "lectureID": "lecture001",
             "pageID": "3",
             "entityID": "lecture001-2-02",
@@ -157,7 +158,7 @@
             "entityContent": "../../img/eye.jpg",
             "entityAnimation": "fadeIn",
             "entityWidth": 66
-            
+
         }],
         "notes": []
     }]
