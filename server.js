@@ -91,8 +91,11 @@ app.post('/saveNote', function(req, res) {
         });
     });
 
-    /* Sends success message */
-    res.send("Saved Successfully!");
+    /* Retrieving and sending the newly update lecture object*/
+    store.load('lectureData', function(err, lecture) {
+        if (err) console.log(err); // err if JSON parsing failed
+        res.send(lecture.data);
+    });
 });
 
 

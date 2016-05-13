@@ -11,7 +11,7 @@ $(document).ready(function() {
         slideController.clearSlideFrame();
         /* Opens presentation file from /resources/xxx.json*/
         slideController.loadLec(false, slideController.startSlideShow);
-        
+
         /* Turns ON the slide show */
         slideController.SLIDESHOW_ON = true;
 
@@ -28,38 +28,54 @@ $(document).ready(function() {
     /* Closes the presentation */
     $(slideController.stop).click(function() {
         View.checkContents();
+        
+        /* Detects wether the slide show is on */
         if (slideController.SLIDESHOW_ON) {
-            slideController.SLIDESHOW_ON = false;   //Disable the slide show being active
-            slideController.slide = null;           //Remove the lecture object within our instance of slideController
-            slideController.cache.lec = null; // empties the cache
-            View.changeHeaderInfo(null, null);      //Resets the lecture title and slide number above the player area
-            slideController.disableNoteButtons();   //Disables the buttons in the note input area
-            View.hideStopIcon();    //Remove the stop button from view
-            View.showPlayIcon();    //Replace stop button with play button
+            slideController.SLIDESHOW_ON = false; //Disable the slide show from being active
+            slideController.slide = null; //Remove the lecture object within our instance of slideController
+            View.changeHeaderInfo(null, null); //Resets the lecture title and slide number above the player area
+            slideController.disableNoteButtons(); //Disables the buttons in the note input area
+            View.hideStopIcon(); //Remove the stop button from view
+            View.showPlayIcon(); //Replace stop button with play button
         }
         slideController.clearSlideFrame();
     });
-    
+
     /* Proceeds to the next slide */
     $(slideController.up).click(function() {
         View.checkContents();
-        slideController.clearSlideFrame();
-        if (slideController.SLIDESHOW_ON) {
-            View.changeSlide("next");
-            slideController.clearNoteDisplay();
-            slideController.loadLec(true, slideController.appendNotes);
 
+        /* If the user clicks past the slide show boundary don't continue to recreate the slide */
+        if (slideController.curSlideNum < slideController.SLIDEMAX - 1) {
+            slideController.clearSlideFrame();
+
+            /* Detects wether the slide show is on */
+            if (slideController.SLIDESHOW_ON) {
+                View.changeSlide("next"); // proceeds to the next slide
+                slideController.clearNoteDisplay(); // clears the node display
+
+                /* loads the lecture object with the append notes callback */
+                slideController.loadLec(true, slideController.appendNotes);
+            }
         }
     });
 
     /* Moves back a slide */
     $(slideController.down).click(function() {
         View.checkContents();
-        slideController.clearSlideFrame();
-        if (slideController.SLIDESHOW_ON) {
-            View.changeSlide("prev");
-            slideController.clearNoteDisplay();
-            slideController.loadLec(true, slideController.appendNotes);
+        
+        /* If the user clicks past the slide show boundary don't continue to recreate the slide */
+        if (slideController.curSlideNum != slideController.SLIDEMIN) {
+            slideController.clearSlideFrame();
+            
+            /* Detects wether the slide show is on */
+            if (slideController.SLIDESHOW_ON) {
+                View.changeSlide("prev"); // proceeds to the previous slide
+                slideController.clearNoteDisplay(); // clears the note display
+                
+                /* loads the lecture object with the append notes callback */
+                slideController.loadLec(true, slideController.appendNotes);
+            }
         }
     });
 
@@ -102,5 +118,3 @@ $(document).ready(function() {
         event.preventDefault();
     });
 });
-
-
