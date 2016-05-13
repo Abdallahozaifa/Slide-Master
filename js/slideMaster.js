@@ -4,6 +4,11 @@ $(document).ready(function() {
     /* Hides the audio on icon */
     View.hideAudioOnIcon();
     $(slideController.stop).hide();
+    
+    /* Waits until the elements are loaded then changes the background color of the slide to black */
+    setTimeout(function() {
+        View.changeBgColor("black", "on");
+    }, 800);
 
     /* Icons click handlers for all the icons */
     $(slideController.play).click(function() {
@@ -28,9 +33,10 @@ $(document).ready(function() {
     /* Closes the presentation */
     $(slideController.stop).click(function() {
         View.checkContents();
-        
+
         /* Detects wether the slide show is on */
         if (slideController.SLIDESHOW_ON) {
+            View.changeBgColor("black", "off");
             slideController.SLIDESHOW_ON = false; //Disable the slide show from being active
             slideController.slide = null; //Remove the lecture object within our instance of slideController
             View.changeHeaderInfo(null, null); //Resets the lecture title and slide number above the player area
@@ -63,16 +69,16 @@ $(document).ready(function() {
     /* Moves back a slide */
     $(slideController.down).click(function() {
         View.checkContents();
-        
+
         /* If the user clicks past the slide show boundary don't continue to recreate the slide */
         if (slideController.curSlideNum != slideController.SLIDEMIN) {
             slideController.clearSlideFrame();
-            
+
             /* Detects wether the slide show is on */
             if (slideController.SLIDESHOW_ON) {
                 View.changeSlide("prev"); // proceeds to the previous slide
                 slideController.clearNoteDisplay(); // clears the note display
-                
+
                 /* loads the lecture object with the append notes callback */
                 slideController.loadLec(true, slideController.appendNotes);
             }

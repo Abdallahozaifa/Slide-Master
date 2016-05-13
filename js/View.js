@@ -60,6 +60,18 @@ var View = {
           $(slideController.audioOff).show();
      },
 
+     /* changes the background color of the slide */
+     changeBgColor: function(color, operation) {
+          var slideBody;
+          if (operation == "on") {
+               slideBody = $('#slideMaster').contents().find('#playerFrame').contents().find('body');
+          }
+          else if (operation == "off") {
+               slideBody = $("iframe").contents().find("body");
+          }
+          slideBody.css("background", color);
+     },
+
      /* Changes the header info for the user */
      changeHeaderInfo: function(lecObj, slideNum) {
           /* Sets the headers back to the default when slide player is turned off */
@@ -110,12 +122,16 @@ var View = {
           if (lecObj.pages[slideNum].background == "color") {
                $(slideController.getSlideFrame()).css("background-color", lecObj.pages[slideNum].backgroundcolor);
           }
-          
-          var slideBody = $($("iframe")[0]).contents().find("body");
-          slideBody.css("background-image", "url(" + lecObj.pages[slideNum]["background-image"] + ")");
-          
-          var entities = lecObj.pages[slideNum].entities; //Extract and iterate through entities
 
+          /* Grabs the slide body */
+          var slideBody = $($("iframe")[0]).contents().find("body");
+
+          if (lecObj.pages[slideNum]["background-color"] == "")
+               slideBody.css("background-image", "url(" + lecObj.pages[slideNum]["background-image"] + ")");
+          else
+               slideBody.css("background-color", "white");
+
+          var entities = lecObj.pages[slideNum].entities; //Extract and iterate through entities
           View.createAudioTag(lecObj, slideNum); // creates the audio tag object
           if (View.audioOn && View.audioTag != null)
                View.audioTag.play();
@@ -131,6 +147,7 @@ var View = {
                     elt.css("position", "fixed");
                     elt.css("width", "100%");
                     elt.css("text-align", "center");
+                    elt.css("text-decoration", "underline");
                }
                else if (entity.entityType == "text") {
                     elt = $("<p></p>").text(entity.entityContent);
@@ -146,9 +163,18 @@ var View = {
                     var leftPos = View.findCenterPosition(entity.entityWidth, entity.entityLocation.x);
 
                     elt.css("position", "fixed");
-                    elt.css("left", leftPos);
+                    if (entity.entityID != "hand-img" && entity.entityID != "valley-image") {
+                         elt.css("left", leftPos);
+                    }
+                    else {
+                         elt.css("left", entity.entityLocation.x + "%");
+                    }
                     elt.css("top", entity.entityLocation.y + "%");
                     elt.css("width", entity.entityWidth + "%");
+
+                    if (entity.entityheight != "") {
+                         elt.css("height", entity.entityheight + "%");
+                    }
                     elt.css("border-radius", "10px");
                }
 
