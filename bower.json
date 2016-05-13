@@ -1,0 +1,32 @@
+{
+  "name": "slide-master",
+  "description": "web slide player with note taking ability",
+  "main": "",
+  "authors": [
+    "Hozaifa Abdalla",
+    "Alex Kiefer",
+    "Daniel Lopez"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "slide",
+    "master",
+    "master",
+    "slide",
+    "slideplayer",
+    "player"
+  ],
+  "homepage": "https://github.com/Abdallahozaifa/Slide-Master",
+  "dependencies": {
+    "jquery": ">= 1.6.2",
+    "letteringjs": ">= 0.6.1",
+    "animate.css": ">= 3.0.0"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
