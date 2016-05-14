@@ -13,6 +13,7 @@ $(document).ready(function() {
     /* Icons click handlers for all the icons */
     $(slideController.play).click(function() {
         View.checkContents();
+        View.changeBgColor("white", "off");
         slideController.clearSlideFrame();
         /* Opens presentation file from /resources/xxx.json*/
         slideController.loadLec(false, slideController.startSlideShow);
