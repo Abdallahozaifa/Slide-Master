@@ -142,7 +142,7 @@ var View = {
                //Create the appropriate html object for each element (header, text, image)
                //Need to handle how images are stored?
                if (entity.entityType == "header") {
-                    elt = $("<h1></h1>").text(entity.entityContent);
+                    elt = $("<h1 class='header'></h1>").text(entity.entityContent);
                     elt.css("top", entity.entityLocation.y + "%");
                     elt.css("position", "fixed");
                     elt.css("width", "100%");
@@ -180,7 +180,12 @@ var View = {
 
                $(slideController.getSlideFrame()).append(elt); //Append the element
 
-               //Style/Position element
+               /* Animation */
+               // var header = $($("iframe")[0]).contents().find("body").find(".header");
+               // $(function() {
+               //      console.log($(header));
+               //      $(header).textillate();
+               // });
           });
      },
 
