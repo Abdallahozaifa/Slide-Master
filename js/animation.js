@@ -1,6 +1,6 @@
-/* global $, slideController, MutationObserver */
+/* global $, MutationObserver */
 $(document).ready(function() {
-     
+
      /* Target element that the mutation observer is using */
      var target = document.querySelector("#slide-page");
 
@@ -8,9 +8,20 @@ $(document).ready(function() {
      var observer = new MutationObserver(function(mutations) {
           mutations.forEach(function(mutation) {
                var elmAdded = $(mutation.addedNodes[0]);
-               if (elmAdded.attr("class") == "header") {
-                    animate(elmAdded);
+               
+               /* Adding animation to elements with a specific class */
+               switch(elmAdded.attr("class")){
+                    case "header":
+                         animateHeader(elmAdded);
+                         break;
+                    case "description":
+                         animateDescr(elmAdded);
+                         break;
+                    case "slide-image":
+                         animateImage(elmAdded);
+                         break;
                }
+
           });
      });
 
@@ -20,12 +31,12 @@ $(document).ready(function() {
           childList: true,
           characterData: true
      };
-     
+
      /* Started observing the target element */
      observer.observe(target, observerConfig);
 
-     var animate = function(elt) {
-          elt.textillate({
+     var animateHeader = function(elm) {
+          elm.textillate({
                loop: true,
                in : {
                     effect: 'tada',
@@ -40,4 +51,12 @@ $(document).ready(function() {
           });
      };
 
+     var animateDescr = function(elm) {
+          elm.textillate();
+     };
+     
+     var animateImage = function(elm){
+          elm.addClass('animated bounceInLeft');
+     };
+     
 });

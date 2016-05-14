@@ -150,7 +150,7 @@ var View = {
                     elt.css("text-decoration", "underline");
                }
                else if (entity.entityType == "text") {
-                    elt = $("<p></p>").text(entity.entityContent);
+                    elt = $("<p class='description'></p>").text(entity.entityContent);
                     elt.css("position", "fixed");
                     elt.css("top", entity.entityLocation.y + "%");
                     elt.css("left", entity.entityLocation.x + "%");
@@ -159,7 +159,7 @@ var View = {
                     }
                }
                else if (entity.entityType == "image") {
-                    elt = $("<img></img>").attr('src', entity.entityContent);
+                    elt = $("<img class='slide-image'></img>").attr('src', entity.entityContent);
                     var leftPos = View.findCenterPosition(entity.entityWidth, entity.entityLocation.x);
 
                     elt.css("position", "fixed");
