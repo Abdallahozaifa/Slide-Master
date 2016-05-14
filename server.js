@@ -17,6 +17,8 @@ app.use('/resources', express.static('resources'));
 app.use('/font-awesome', express.static('font-awesome'));
 app.use('/img', express.static('img'));
 app.use('/bower_components', express.static('bower_components'));
+app.use('/node_modules', express.static('node_modules'));
+
 app.use(bodyParser.urlencoded({
     extended: false
 }));
