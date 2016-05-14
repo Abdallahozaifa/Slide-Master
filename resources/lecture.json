@@ -76,7 +76,7 @@
                     "x": 13,
                     "y": 30
                 },
-                "entityContent": "By filling in the text box below, and they will be automatically saved!",
+                "entityContent": "Enter a note in the text box below, and they will be automatically saved!",
                 "entityAnimation": "fadeIn"
             },
 

@@ -6,7 +6,10 @@ $(document).ready(function() {
 
      /* Mutation observer to detect changes in the DOM */
      var observer = new MutationObserver(function(mutations) {
+          
+          /* Iterates through all the changes that occured in the DOM */
           mutations.forEach(function(mutation) {
+               /* Elm added in the DOM */
                var elmAdded = $(mutation.addedNodes[0]);
                
                /* Adding animation to elements with a specific class */
@@ -34,7 +37,8 @@ $(document).ready(function() {
 
      /* Started observing the target element */
      observer.observe(target, observerConfig);
-
+     
+     /* Animation for header */
      var animateHeader = function(elm) {
           elm.textillate({
                loop: true,
@@ -50,11 +54,13 @@ $(document).ready(function() {
                }
           });
      };
-
+     
+     /* Animation for descriptions */
      var animateDescr = function(elm) {
           elm.textillate();
      };
      
+     /* Animation for images */
      var animateImage = function(elm){
           elm.addClass('animated bounceInLeft');
      };

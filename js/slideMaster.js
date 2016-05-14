@@ -21,7 +21,7 @@ $(document).ready(function() {
         slideController.SLIDESHOW_ON = true;
 
         /* Changes the background color */
-        slideController.getSlideFrame().css("background-color", "grey");
+        slideController.getSlideFrame().css("background-color", "white");
 
         //Enables all buttons in the note input area
         slideController.enableNoteButtons();
