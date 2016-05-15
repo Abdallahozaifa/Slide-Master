@@ -1,6 +1,6 @@
 # Slide-Master
 Web slide player with note taking ability with NodeJS
-
+![image](https://cloud.githubusercontent.com/assets/10437615/15277277/2e59959a-1acd-11e6-9473-9778cf2c6c0b.gif)
 ## Team
 
 | <a href="http://hozaifaabdalla.com" target="_blank">**Hozaifa Abdalla**</a> | **Daniel Lopez** | **Alex Kiefer**</a> |
