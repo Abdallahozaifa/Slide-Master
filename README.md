@@ -18,6 +18,10 @@ Slide Master is primarly a collection of 4 sections the slide viewer, notes sect
   <a href="http://fontawesome.io/icons/?utm_source=www.qipaotu.com"><li>Font Awesome Icons</li></a>
   <a href="https://c9.io"><li>Cloud9</li></a>
 </ul>
+
+## Design
+The software architecture design pattern used for slide master is MVC(Model View Controller). The MVC design pattern allowed the application to become split into 3 components. The Model component directly managed the data, logic, and rules, of slide master. In this application the model component was on the server through the JSON file store where information was stored on a file, updated, and sent to the client. The View component was responsible for the visual representation of the lecture data.Slide master has a View.js file that contains a view object with all the necessary components and methods that manipulate the view. The Controller component accepts input from the user and uses AJAX to send the updated lecture object to the server and receives the updated information and passes it to the view to update the changes made such as the notes. 
+
 ## Team 
 
 | <a href="http://hozaifaabdalla.com" target="_blank">**Hozaifa Abdalla**</a> | **Daniel Lopez** | **Alex Kiefer**</a> |
