@@ -1,6 +1,8 @@
 # Slide-Master
-Web slide player with note taking ability with NodeJS
 ![image](https://cloud.githubusercontent.com/assets/10437615/15277277/2e59959a-1acd-11e6-9473-9778cf2c6c0b.gif)
+
+##Introduction
+Slide Master is a version of a web slide player that reads lecture slides from a JSON file. It is mainly composed of a single iframe, the slide viewer onto which content is injected and managed. Slide Master is very user friendly and includes features such as 
 ## Team
 
 | <a href="http://hozaifaabdalla.com" target="_blank">**Hozaifa Abdalla**</a> | **Daniel Lopez** | **Alex Kiefer**</a> |
