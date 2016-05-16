@@ -2,8 +2,16 @@
 ![image](https://cloud.githubusercontent.com/assets/10437615/15277277/2e59959a-1acd-11e6-9473-9778cf2c6c0b.gif)
 
 ##Introduction
-Slide Master is a version of a web slide player that reads lecture slides from a JSON file. It is mainly composed of a single iframe, the slide viewer onto which content is injected and managed. Slide Master has a friendly user interface and includes features such as specialized notes for each individual slide, auto note save, audio for each individual slide, fullscreen mode. 
+Slide Master is a version of a web slide player that reads lecture slides from a JSON file. It is mainly composed of a single iframe, the slide viewer onto which content is injected and managed, a notes section that allows notes to be created for each slide, and a display section that displays the added notes. Slide Master has a very friendly user interface and includes features such as specialized notes for each individual slide, auto note saving feature, audio for each individual slide, and fullscreen mode. 
 
+## Development 
+### Development Tools Utilized
+<ul>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+</ul>
 ## Team 
 
 | <a href="http://hozaifaabdalla.com" target="_blank">**Hozaifa Abdalla**</a> | **Daniel Lopez** | **Alex Kiefer**</a> |
