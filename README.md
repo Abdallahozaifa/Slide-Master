@@ -4,15 +4,18 @@
 ##Introduction
 Slide Master is a version of a web slide player that reads lecture slides from a JSON file. It is mainly composed of a single iframe, the slide viewer onto which content is injected and managed, a notes section that allows notes to be created for each slide, and a display section that displays the added notes. Slide Master has a very friendly user interface and includes features such as specialized notes for each individual slide, auto note saving feature, audio for each individual slide, and fullscreen mode. 
 
-## Development 
+## Development
+
 #### Tools Utilized
+Slide Master is primarly a collection of 4 sections the slide viewer, notes section, display section, and slide master buttons. The user interface was built with bootstrap for great visuals and textillateJS for eye catching animations. 
 <ul>
-  <a href="https://jquery.com/"><li>jQuery</li></a>
+  <a href="https://jquery.com/"><li>JQuery</li></a>
   <a href="https://github.com/ArekSredzki/node-local-object-store"><li>JSON File Store</li></a>
   <a href="http://getbootstrap.com/"><li>Bootstrap</li></a>
   <a href="https://nodejs.org/en/"><li>NodeJS</li></a>
   <a href="http://expressjs.com/"><li>ExpressJS</li></a>
   <a href="http://textillate.js.org/?utm_content=bufferb4552&utm_source=buffer&utm_medium=twitter&utm_campaign=Buffer"><li>TextillateJS</li></a>
+  <a href="http://fontawesome.io/icons/?utm_source=www.qipaotu.com"><li>Font Awesome Icons</li></a>
   <a href="https://c9.io"><li>Cloud9</li></a>
 </ul>
 ## Team 
