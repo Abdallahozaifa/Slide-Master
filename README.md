@@ -7,12 +7,12 @@ Slide Master is a version of a web slide player that reads lecture slides from a
 ## Development 
 #### Tools Utilized
 <ul>
-  <a href=""><li>jQuery</li></a>
-  <a href=""><li>JSON File Store</li></a>
-  <a href=""><li>Bootstrap</li></a>
-  <a href=""><li>NodeJS</li></a>
-  <a href=""><li>ExpressJS</li></a>
-  <a href=""><li>TextillateJS</li></a>
+  <a href="https://jquery.com/"><li>jQuery</li></a>
+  <a href="https://github.com/ArekSredzki/node-local-object-store"><li>JSON File Store</li></a>
+  <a href="http://getbootstrap.com/"><li>Bootstrap</li></a>
+  <a href="https://nodejs.org/en/"><li>NodeJS</li></a>
+  <a href="http://expressjs.com/"><li>ExpressJS</li></a>
+  <a href="http://textillate.js.org/?utm_content=bufferb4552&utm_source=buffer&utm_medium=twitter&utm_campaign=Buffer"><li>TextillateJS</li></a>
   <a href=""><li>Cloud9</li></a>
 </ul>
 ## Team 
